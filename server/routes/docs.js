@@ -71,7 +71,7 @@ router.post('/upload', upload.single('file'), async (req, res) => {
     `;
 
     // We use gemini-3.5-flash since it's the model available for this key
-    const model = ai.getGenerativeModel({ model: "gemini-3.5-flash" });
+    const model = ai.getGenerativeModel({ model: "gemini-1.5-flash" });
     const aiResponse = await model.generateContent([
       prompt,
       {
