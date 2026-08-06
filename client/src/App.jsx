@@ -7,6 +7,7 @@ import PulseDecide from './PulseDecide';
 import PulseSearch from './PulseSearch';
 import PulseDocs from './PulseDocs';
 import Login from './Login';
+import Landing from './Landing';
 
 function ProtectedRoute({ children }) {
   const [session, setSession] = useState(null);
@@ -45,21 +46,27 @@ function ProtectedRoute({ children }) {
 function App() {
   return (
     <Routes>
+      <Route path="/" element={<Landing />} />
       <Route path="/login" element={<Login />} />
       <Route
-        path="/"
+        path="/app"
         element={
           <ProtectedRoute>
             <Layout />
           </ProtectedRoute>
         }
       >
-        <Route index element={<Navigate to="/brief" replace />} />
+        <Route index element={<Navigate to="/app/brief" replace />} />
         <Route path="brief" element={<PulseBrief />} />
         <Route path="decide" element={<PulseDecide />} />
         <Route path="search" element={<PulseSearch />} />
         <Route path="docs" element={<PulseDocs />} />
       </Route>
+      {/* Legacy routes redirect into /app */}
+      <Route path="/brief" element={<Navigate to="/app/brief" replace />} />
+      <Route path="/decide" element={<Navigate to="/app/decide" replace />} />
+      <Route path="/search" element={<Navigate to="/app/search" replace />} />
+      <Route path="/docs" element={<Navigate to="/app/docs" replace />} />
     </Routes>
   );
 }

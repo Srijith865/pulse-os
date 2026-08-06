@@ -30,31 +30,31 @@ const Sidebar = () => {
       </div>
       <nav className="flex-1 py-md flex flex-col gap-xs">
         <Link 
-          className={`flex items-center gap-sm p-sm ml-sm mr-sm transition-colors duration-200 ease-in-out border ${isActive('/brief') ? 'bg-primary text-on-primary border-primary' : 'text-primary border-transparent hover:bg-secondary-container hover:border-primary'}`} 
-          to="/brief"
+          className={`flex items-center gap-sm p-sm ml-sm mr-sm transition-colors duration-200 ease-in-out border ${isActive('/app/brief') ? 'bg-primary text-on-primary border-primary' : 'text-primary border-transparent hover:bg-secondary-container hover:border-primary'}`} 
+          to="/app/brief"
         >
-          <span className="material-symbols-outlined" style={isActive('/brief') ? { fontVariationSettings: "'FILL' 1" } : {}}>wb_sunny</span>
+          <span className="material-symbols-outlined" style={isActive('/app/brief') ? { fontVariationSettings: "'FILL' 1" } : {}}>wb_sunny</span>
           <span className="font-label-caps text-label-caps uppercase">Brief</span>
         </Link>
         <Link 
-          className={`flex items-center gap-sm p-sm ml-sm mr-sm transition-colors duration-200 ease-in-out border ${isActive('/docs') ? 'bg-primary text-on-primary border-primary' : 'text-primary border-transparent hover:bg-secondary-container hover:border-primary'}`} 
-          to="/docs"
+          className={`flex items-center gap-sm p-sm ml-sm mr-sm transition-colors duration-200 ease-in-out border ${isActive('/app/docs') ? 'bg-primary text-on-primary border-primary' : 'text-primary border-transparent hover:bg-secondary-container hover:border-primary'}`} 
+          to="/app/docs"
         >
-          <span className="material-symbols-outlined" style={isActive('/docs') ? { fontVariationSettings: "'FILL' 1" } : {}}>description</span>
+          <span className="material-symbols-outlined" style={isActive('/app/docs') ? { fontVariationSettings: "'FILL' 1" } : {}}>description</span>
           <span className="font-label-caps text-label-caps uppercase">Docs</span>
         </Link>
         <Link 
-          className={`flex items-center gap-sm p-sm ml-sm mr-sm transition-colors duration-200 ease-in-out border ${isActive('/decide') ? 'bg-primary text-on-primary border-primary' : 'text-primary border-transparent hover:bg-secondary-container hover:border-primary'}`} 
-          to="/decide"
+          className={`flex items-center gap-sm p-sm ml-sm mr-sm transition-colors duration-200 ease-in-out border ${isActive('/app/decide') ? 'bg-primary text-on-primary border-primary' : 'text-primary border-transparent hover:bg-secondary-container hover:border-primary'}`} 
+          to="/app/decide"
         >
-          <span className="material-symbols-outlined" style={isActive('/decide') ? { fontVariationSettings: "'FILL' 1" } : {}}>query_stats</span>
+          <span className="material-symbols-outlined" style={isActive('/app/decide') ? { fontVariationSettings: "'FILL' 1" } : {}}>query_stats</span>
           <span className="font-label-caps text-label-caps uppercase">Decide</span>
         </Link>
         <Link 
-          className={`flex items-center gap-sm p-sm ml-sm mr-sm transition-colors duration-200 ease-in-out border ${isActive('/search') ? 'bg-primary text-on-primary border-primary' : 'text-primary border-transparent hover:bg-secondary-container hover:border-primary'}`} 
-          to="/search"
+          className={`flex items-center gap-sm p-sm ml-sm mr-sm transition-colors duration-200 ease-in-out border ${isActive('/app/search') ? 'bg-primary text-on-primary border-primary' : 'text-primary border-transparent hover:bg-secondary-container hover:border-primary'}`} 
+          to="/app/search"
         >
-          <span className="material-symbols-outlined" style={isActive('/search') ? { fontVariationSettings: "'FILL' 1" } : {}}>hub</span>
+          <span className="material-symbols-outlined" style={isActive('/app/search') ? { fontVariationSettings: "'FILL' 1" } : {}}>hub</span>
           <span className="font-label-caps text-label-caps uppercase">Search</span>
         </Link>
       </nav>

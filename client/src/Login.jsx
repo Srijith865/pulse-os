@@ -26,7 +26,7 @@ export default function Login() {
         if (error) throw error;
         
         if (data.session) {
-          navigate('/brief');
+          navigate('/app/brief');
         } else {
           // If session is null but no error, usually means "Confirm Email" is still enabled.
           // Fallback just in case.
@@ -42,7 +42,7 @@ export default function Login() {
         if (error) throw error;
         
         if (data.session) {
-          navigate('/brief');
+          navigate('/app/brief');
         }
       }
     } catch (err) {
