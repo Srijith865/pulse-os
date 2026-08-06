@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pulse OS - Intelligence Without the Noise</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-fixed-dim": "#c6c6c7",
+                      "on-tertiary-fixed-variant": "#474747",
+                      "on-tertiary": "#ffffff",
+                      "primary": "#000000",
+                      "outline": "#7e7576",
+                      "secondary": "#5d5f5f",
+                      "surface": "#fbf8ff",
+                      "surface-container-low": "#f4f2fd",
+                      "on-secondary-fixed": "#1a1c1c",
+                      "surface-container-lowest": "#ffffff",
+                      "on-surface-variant": "#4c4546",
+                      "surface-bright": "#fbf8ff",
+                      "on-secondary-fixed-variant": "#454747",
+                      "inverse-surface": "#2f3038",
+                      "secondary-container": "#dfe0e0",
+                      "primary-fixed-dim": "#c6c6c6",
+                      "tertiary": "#000000",
+                      "on-secondary": "#ffffff",
+                      "on-tertiary-container": "#848484",
+                      "primary-container": "#1b1b1b",
+                      "tertiary-fixed-dim": "#c6c6c6",
+                      "inverse-on-surface": "#f1effa",
+                      "surface-tint": "#5e5e5e",
+                      "error": "#ba1a1a",
+                      "inverse-primary": "#c6c6c6",
+                      "on-primary-fixed": "#1b1b1b",
+                      "on-primary-container": "#848484",
+                      "tertiary-container": "#1b1b1b",
+                      "on-surface": "#1a1b22",
+                      "surface-container": "#eeedf7",
+                      "on-primary": "#ffffff",
+                      "on-background": "#1a1b22",
+                      "error-container": "#ffdad6",
+                      "on-secondary-container": "#616363",
+                      "surface-container-high": "#e8e7f1",
+                      "on-primary-fixed-variant": "#474747",
+                      "primary-fixed": "#e2e2e2",
+                      "outline-variant": "#cfc4c5",
+                      "tertiary-fixed": "#e2e2e2",
+                      "background": "#fbf8ff",
+                      "on-tertiary-fixed": "#1b1b1b",
+                      "on-error": "#ffffff",
+                      "secondary-fixed": "#e2e2e2",
+                      "surface-container-highest": "#e3e1ec",
+                      "on-error-container": "#93000a",
+                      "surface-variant": "#e3e1ec",
+                      "surface-dim": "#dad9e3"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xs": "8px",
+                      "base": "4px",
+                      "md": "32px",
+                      "gutter": "24px",
+                      "sm": "16px",
+                      "xl": "128px",
+                      "lg": "64px",
+                      "margin-desktop": "64px",
+                      "margin-mobile": "20px"
+              },
+              "fontFamily": {
+                      "display": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-lg-mobile": [
+                              "Hanken Grotesk"
+                      ],
+                      "headline-md": [
+                              "Hanken Grotesk"
+                      ],
+                      "caption": [
+                              "Inter"
+                      ],
+                      "headline-lg": [
+                              "Hanken Grotesk"
+                      ],
+                      "body-md": [
+                              "Inter"
+                      ],
+                      "label-caps": [
+                              "JetBrains Mono"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "display": [
+                              "64px",
+                              {
+                                      "lineHeight": "1.1",
+                                      "letterSpacing": "-0.04em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "caption": [
+                              "12px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-caps": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.1em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Hanken Grotesk', sans-serif;
+        }
+        .editorial-border {
+            border: 1px solid theme('colors.primary');
+        }
+        .editorial-border-bottom {
+            border-bottom: 1px solid theme('colors.primary');
+        }
+        .editorial-border-top {
+            border-top: 1px solid theme('colors.primary');
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-surface w-full top-0 sticky border-b border-primary dark:border-outline-variant flat no shadows z-50">
+<div class="flex justify-between items-center h-16 px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto">
+<div class="font-display text-headline-md font-bold text-primary dark:text-on-surface">Pulse OS</div>
+<nav class="hidden md:flex gap-md font-body-md text-body-md uppercase tracking-wider">
+<a class="text-primary dark:text-on-surface border-b-2 border-primary dark:border-on-surface pb-1 cursor-pointer active:opacity-80" href="#">Product</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-surface transition-colors cursor-pointer active:opacity-80" href="#">Solutions</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-on-surface transition-colors cursor-pointer active:opacity-80" href="#">Pricing</a>
+</nav>
+<button class="hidden md:block bg-primary text-on-primary font-label-caps text-label-caps px-sm py-xs hover:bg-primary-container transition-all duration-200">
+                Get Started
+            </button>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col items-center w-full px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto">
+<!-- Hero Section -->
+<section class="w-full py-xl flex flex-col md:flex-row items-center gap-lg editorial-border-bottom">
+<div class="flex-1 flex flex-col gap-md">
+<div class="font-label-caps text-label-caps text-secondary uppercase">System Initialized</div>
+<h1 class="font-display text-headline-lg-mobile md:text-display text-primary max-w-2xl leading-tight">Intelligence Without the Noise.</h1>
+<p class="font-body-lg text-body-lg text-secondary max-w-xl">
+                    Eliminate context-switching. Pulse OS synthesizes your workspace into three specialized modules—Brief, Docs, and Decide—connected by a central AI Orb.
+                </p>
+<div class="flex flex-col sm:flex-row gap-sm pt-sm">
+<button class="bg-primary text-on-primary font-label-caps text-label-caps px-md py-sm hover:opacity-90 transition-opacity whitespace-nowrap">
+                        Start Your Morning Report
+                    </button>
+<button class="border border-primary text-primary font-label-caps text-label-caps px-md py-sm hover:bg-surface-variant transition-colors whitespace-nowrap">
+                        Watch the Intelligence in Action
+                    </button>
+</div>
+</div>
+<div class="flex-1 w-full h-[400px] md:h-[500px] relative editorial-border p-sm bg-surface-container-lowest">
+<div class="w-full h-full bg-surface-dim flex items-center justify-center relative overflow-hidden" data-alt="A highly abstract, high-contrast black and white digital art representation of an 'AI Orb'. The orb should appear as a dense, complex structure of fine white lines and glowing data points against a deep black void, symbolizing focused intelligence and clarity emerging from noise. The style should be minimalist, editorial, and reminiscent of high-end architectural renderings or advanced technical blueprints. Soft, bright, white lighting highlights the central geometry." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBSPj-2Xs9WRPKkMwilPLm_l3Wq8xm4KwdC2JYb1X8t5qCWQhLXHOb9r4ls8MuOatiF2PYS-IiDa5Xe4U_8M_8ekYN6f_HjC-NOuGy3lGAE276i504E-kxTxnnAT960FlQZmBiOjU6SDVsFXvzZPxHbYLpb9or6uhxw98pACpq3ImsIj3PVhI6jZoICiZbOYFlSPydSRevv9ki1wgPFFLgCKGtYW8ohLR1rMOmm07fRhEo1VrUclWaMrQ')">
+<!-- Minimalist structural lines -->
+<div class="absolute inset-0 border-l border-t border-primary opacity-10 m-sm"></div>
+<div class="absolute inset-0 border-r border-b border-primary opacity-10 m-sm"></div>
+<span class="font-label-caps text-label-caps absolute bottom-sm left-sm text-secondary">FIG 1. CORE SYNTHESIS</span>
+</div>
+</div>
+</section>
+<!-- Modules Section -->
+<section class="w-full py-xl flex flex-col gap-lg editorial-border-bottom">
+<div class="flex justify-between items-end border-b border-outline-variant pb-sm">
+<h2 class="font-headline-lg-mobile md:text-headline-lg text-primary">Specialized Modules</h2>
+<span class="font-label-caps text-label-caps text-secondary hidden md:block">01 / ARCHITECTURE</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-0 editorial-border">
+<!-- Pulse Brief -->
+<div class="p-lg border-b md:border-b-0 md:border-r border-primary hover:bg-surface-container-low transition-colors group cursor-default">
+<div class="flex justify-between items-start mb-lg">
+<span class="material-symbols-outlined text-primary text-3xl">subject</span>
+<span class="font-label-caps text-label-caps border border-primary px-2 py-1 group-hover:bg-primary group-hover:text-on-primary transition-colors">MOD. 01</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-sm">Pulse Brief</h3>
+<p class="font-body-md text-body-md text-secondary">
+                        Morning intelligence reports meticulously synthesized from Slack, Email, and GitHub. Start your day with absolute clarity.
+                    </p>
+</div>
+<!-- Pulse Docs -->
+<div class="p-lg border-b md:border-b-0 md:border-r border-primary hover:bg-surface-container-low transition-colors group cursor-default bg-surface-container-lowest">
+<div class="flex justify-between items-start mb-lg">
+<span class="material-symbols-outlined text-primary text-3xl">folder_open</span>
+<span class="font-label-caps text-label-caps border border-primary px-2 py-1 group-hover:bg-primary group-hover:text-on-primary transition-colors">MOD. 02</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-sm">Pulse Docs</h3>
+<p class="font-body-md text-body-md text-secondary">
+                        Transform document chaos into structured, immediately actionable knowledge. Retrieve context instantly.
+                    </p>
+</div>
+<!-- Pulse Decide -->
+<div class="p-lg hover:bg-surface-container-low transition-colors group cursor-default">
+<div class="flex justify-between items-start mb-lg">
+<span class="material-symbols-outlined text-primary text-3xl">architecture</span>
+<span class="font-label-caps text-label-caps border border-primary px-2 py-1 group-hover:bg-primary group-hover:text-on-primary transition-colors">MOD. 03</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-sm">Pulse Decide</h3>
+<p class="font-body-md text-body-md text-secondary">
+                        Advanced risk-aware decision support and strategic recommendations based on cross-platform data synthesis.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Centralized Intelligence Section -->
+<section class="w-full py-xl flex flex-col md:flex-row items-stretch gap-0 editorial-border-bottom">
+<div class="flex-1 p-lg bg-primary text-on-primary flex flex-col justify-center">
+<span class="font-label-caps text-label-caps text-secondary-fixed-dim mb-md">02 / CORE ENGINE</span>
+<h2 class="font-headline-lg-mobile md:text-headline-lg mb-md">Centralized Intelligence</h2>
+<p class="font-body-lg text-body-lg text-outline-variant mb-lg max-w-md">
+                    The AI Orb is the cognitive center of Pulse OS. It continuously processes fragmented data streams in the background, unifying your workflow into a single source of truth.
+                </p>
+<div class="border-t border-on-tertiary-fixed-variant pt-md flex flex-col gap-sm">
+<div class="flex justify-between items-center text-body-md font-body-md">
+<span class="text-secondary-fixed-dim">Latency</span>
+<span class="font-label-caps">&lt; 50ms</span>
+</div>
+<div class="flex justify-between items-center text-body-md font-body-md">
+<span class="text-secondary-fixed-dim">Synthesis Rate</span>
+<span class="font-label-caps">Real-time</span>
+</div>
+</div>
+</div>
+<div class="flex-1 min-h-[400px] border-l border-primary bg-surface-container-lowest flex items-center justify-center p-md relative overflow-hidden" data-alt="A macro shot of a sleek, black metallic sphere resting on a pure white grid surface. The sphere reflects sharp, structural white lines from its environment. The lighting is dramatic, high-contrast studio lighting, emphasizing the perfect geometry of the sphere and the precise lines of the grid. Minimalist, premium, editorial style conveying centralized technological power." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB-DA8eXYjOwKzycCSNBDzGlRyO7a7SzdPhCBRhw11B3tO5NJTpnIc0WmyJG--prkvlmd0-TDwwwEBDBnTA2l_6Va6SOTgF0r5HXT1qLccclODDeXwXiOPtdI39fnnxBI1NhBNYhzCk0rUyeJjPXY3JChlaNSiZxcoFMb1Mdd_F72rpF5zkXr83DHf_h1t-XFpL3Q3tfHucL1zcsBAMXBgsgkvSaqjJcHh3ZXoO0ETQFQ9ktVnvslIMtQ')">
+<!-- Decorative grid lines overlay -->
+<div class="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.05)_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+<div class="absolute bg-surface px-4 py-2 border border-primary top-8 right-8 font-label-caps text-label-caps shadow-[4px_4px_0px_rgba(0,0,0,1)]">
+                    STATUS: ACTIVE
+                </div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface dark:bg-surface w-full mt-xl border-t border-primary dark:border-outline-variant flat no shadows">
+<div class="flex flex-col md:flex-row justify-between items-center py-lg px-margin-mobile md:px-margin-desktop max-w-[1440px] mx-auto gap-md">
+<div class="font-display text-body-lg font-bold">Pulse OS</div>
+<nav class="flex gap-md font-caption text-caption text-secondary dark:text-secondary-fixed-dim">
+<a class="hover:underline hover:text-primary dark:hover:text-on-surface transition-all duration-300" href="#">Privacy Policy</a>
+<a class="hover:underline hover:text-primary dark:hover:text-on-surface transition-all duration-300" href="#">Terms of Service</a>
+<a class="hover:underline hover:text-primary dark:hover:text-on-surface transition-all duration-300" href="#">Security</a>
+<a class="hover:underline hover:text-primary dark:hover:text-on-surface transition-all duration-300" href="#">Contact</a>
+</nav>
+<div class="font-caption text-caption text-secondary">© 2024 Pulse OS. All rights reserved.</div>
+</div>
+</footer>
+</body></html>

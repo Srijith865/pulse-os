@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pulse OS - Brief</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#474747",
+                        "on-tertiary-container": "#848484",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1a1b22",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#e2e2e2",
+                        "outline": "#7e7576",
+                        "on-secondary-container": "#616363",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#dfe0e0",
+                        "secondary-fixed": "#e2e2e2",
+                        "primary-container": "#1b1b1b",
+                        "tertiary": "#000000",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#5e5e5e",
+                        "on-surface": "#1a1b22",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "tertiary-fixed-dim": "#c6c6c6",
+                        "on-primary-container": "#848484",
+                        "secondary": "#5d5f5f",
+                        "surface-container-low": "#f4f2fd",
+                        "primary-fixed-dim": "#c6c6c6",
+                        "surface-container-high": "#e8e7f1",
+                        "background": "#fbf8ff",
+                        "on-primary-fixed": "#1b1b1b",
+                        "on-error": "#ffffff",
+                        "primary": "#000000",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#c6c6c6",
+                        "on-tertiary-fixed": "#1b1b1b",
+                        "surface-container-highest": "#e3e1ec",
+                        "on-surface-variant": "#4c4546",
+                        "inverse-surface": "#2f3038",
+                        "surface-variant": "#e3e1ec",
+                        "inverse-on-surface": "#f1effa",
+                        "outline-variant": "#cfc4c5",
+                        "surface-dim": "#dad9e3",
+                        "on-secondary-fixed-variant": "#454747",
+                        "surface-bright": "#fbf8ff",
+                        "surface-container": "#eeedf7",
+                        "tertiary-container": "#1b1b1b",
+                        "surface": "#fbf8ff",
+                        "on-primary-fixed-variant": "#474747"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xl": "128px",
+                        "xs": "8px",
+                        "margin-mobile": "20px",
+                        "lg": "64px",
+                        "margin-desktop": "64px",
+                        "md": "32px",
+                        "base": "4px",
+                        "sm": "16px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "display": ["Hanken Grotesk"],
+                        "caption": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "500" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "display": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "1.4", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .editorial-divider {
+            border-bottom: 1px solid #e2e2e2;
+        }
+        .black-border {
+            border: 1px solid #000000;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased overflow-x-hidden min-h-screen flex">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col fixed left-0 top-0 h-full w-64 border-r border-primary bg-surface dark:bg-background z-50">
+<div class="p-lg editorial-divider">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Pulse OS</h1>
+<p class="font-label-caps text-label-caps text-on-surface-variant mt-xs">System Intelligence</p>
+</div>
+<nav class="flex-1 py-md flex flex-col gap-xs">
+<a class="flex items-center gap-sm bg-primary text-on-primary p-sm ml-sm mr-sm black-border" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">wb_sunny</span>
+<span class="font-label-caps text-label-caps uppercase">Brief</span>
+</a>
+<a class="flex items-center gap-sm text-primary p-sm ml-sm mr-sm hover:bg-secondary-container transition-colors duration-200 ease-in-out border border-transparent hover:border-primary" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="font-label-caps text-label-caps uppercase">Docs</span>
+</a>
+<a class="flex items-center gap-sm text-primary p-sm ml-sm mr-sm hover:bg-secondary-container transition-colors duration-200 ease-in-out border border-transparent hover:border-primary" href="#">
+<span class="material-symbols-outlined">query_stats</span>
+<span class="font-label-caps text-label-caps uppercase">Decide</span>
+</a>
+</nav>
+<div class="p-md editorial-divider border-t border-primary">
+<div class="flex items-center gap-sm">
+<img alt="User profile" class="w-[32px] h-[32px] rounded-full grayscale border border-primary object-cover" data-alt="A stark black and white headshot of a professional individual against a pure white background, extremely high contrast, editorial photography style, minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC_l_WRNy843qESIP5s5FTnsbw7nQJODxNRiLZqss6pYzvv1CKx4HcXNmD5RsFIG2bCa6pTrMBtdD8HKsHbWEx9aalh5i-zHczsSs2xcRszpWp2j5mhYApb_oatr0dZE_a2Os9Irm6l3b3E0-1Qv3LUN6jgkh25jzpJtT_75mvLD0ryapwx0qjUrsmJeBKQ9E24agQs5KNoyMXfQ_mqhHWNzPBuqQSbAQJWgxwgPt8icPOxqugMB6vcA"/>
+<span class="font-label-caps text-label-caps text-primary uppercase">Admin</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="w-full border-b border-primary bg-surface flex justify-between items-center px-lg py-sm sticky top-0 z-40">
+<h2 class="font-headline-md text-headline-md font-bold text-primary">System Console</h2>
+<div class="flex items-center gap-md">
+<div class="hidden lg:flex items-center border-b border-primary pb-xs">
+<span class="material-symbols-outlined text-secondary mr-xs">search</span>
+<input class="bg-transparent border-none outline-none font-label-caps text-label-caps text-primary placeholder-on-surface-variant focus:ring-0 p-0 w-64" placeholder="Search..." type="text"/>
+</div>
+<div class="flex gap-sm">
+<button class="text-primary hover:bg-secondary-container p-xs transition-colors duration-200 ease-in-out black-border bg-white cursor-pointer">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-primary hover:bg-secondary-container p-xs transition-colors duration-200 ease-in-out black-border bg-white cursor-pointer">
+<span class="material-symbols-outlined">settings</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Brief Content -->
+<div class="p-margin-mobile md:p-margin-desktop max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-lg flex-1">
+<!-- Header Section -->
+<div class="col-span-1 lg:col-span-12 editorial-divider pb-lg">
+<p class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-widest mb-md">Morning Intelligence Report // <span id="current-date"></span></p>
+<h1 class="font-display text-display text-primary">The Pulse Brief</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-sm max-w-3xl">Executive summary of overnight system states, urgent communications, and required tactical decisions. All systems nominal, zero critical alerts.</p>
+</div>
+<!-- Left Column: Synthesis & Actions -->
+<div class="col-span-1 lg:col-span-8 flex flex-col gap-xl">
+<!-- Overnight Synthesis -->
+<section>
+<div class="flex items-center justify-between mb-md pb-xs editorial-divider border-b-2 border-primary">
+<h3 class="font-headline-lg text-headline-lg text-primary">Overnight Synthesis</h3>
+<span class="font-label-caps text-label-caps bg-primary text-on-primary px-xs py-base">3 Updates</span>
+</div>
+<div class="flex flex-col gap-base">
+<!-- Slack Item -->
+<details class="group black-border bg-white cursor-pointer [&amp;_summary::-webkit-details-marker]:hidden">
+<summary class="flex items-center justify-between p-md font-headline-md text-headline-md text-primary hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined">chat</span>
+<span>Engineering Channel Thread</span>
+</div>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform duration-300">expand_more</span>
+</summary>
+<div class="p-md pt-0 text-body-md font-body-md text-on-surface-variant border-t border-gray-200">
+<p class="mt-sm">Discussion regarding latency spikes in EU-West cluster. Resolution proposed by backend team; deployment scheduled for 10:00 UTC. Monitor logs post-deployment.</p>
+<div class="mt-sm flex gap-xs">
+<span class="font-label-caps text-label-caps black-border px-xs py-base">#infra</span>
+<span class="font-label-caps text-label-caps black-border px-xs py-base bg-black text-white">Action Required</span>
+</div>
+</div>
+</details>
+<!-- GitHub Item -->
+<details class="group black-border bg-white cursor-pointer [&amp;_summary::-webkit-details-marker]:hidden">
+<summary class="flex items-center justify-between p-md font-headline-md text-headline-md text-primary hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined">code</span>
+<span>PR #402: Auth Refactor</span>
+</div>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform duration-300">expand_more</span>
+</summary>
+<div class="p-md pt-0 text-body-md font-body-md text-on-surface-variant border-t border-gray-200">
+<p class="mt-sm">All integration tests passed. Pending final security review before merge. Blocks release v2.4.0.</p>
+</div>
+</details>
+<!-- Email Item -->
+<details class="group black-border bg-white cursor-pointer [&amp;_summary::-webkit-details-marker]:hidden">
+<summary class="flex items-center justify-between p-md font-headline-md text-headline-md text-primary hover:bg-surface-container transition-colors">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined">mail</span>
+<span>Vendor Update: AWS SLA</span>
+</div>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform duration-300">expand_more</span>
+</summary>
+<div class="p-md pt-0 text-body-md font-body-md text-on-surface-variant border-t border-gray-200">
+<p class="mt-sm">Notice of revised SLA terms effective next month. Legal team needs to review section 4.2 regarding downtime compensation.</p>
+</div>
+</details>
+</div>
+</section>
+<!-- Urgent Actions -->
+<section>
+<div class="flex items-center justify-between mb-md pb-xs editorial-divider border-b-2 border-primary">
+<h3 class="font-headline-lg text-headline-lg text-primary">Urgent Actions</h3>
+<span class="font-label-caps text-label-caps border border-primary px-xs py-base">High Priority</span>
+</div>
+<div class="flex flex-col">
+<label class="flex items-center p-sm editorial-divider cursor-pointer hover:bg-surface-container transition-colors group">
+<input class="w-5 h-5 border-black text-black focus:ring-black rounded-none cursor-pointer" type="checkbox"/>
+<span class="ml-sm font-body-lg text-body-lg text-primary group-hover:pl-xs transition-all">Approve Q3 Budget Allocation</span>
+</label>
+<label class="flex items-center p-sm editorial-divider cursor-pointer hover:bg-surface-container transition-colors group">
+<input class="w-5 h-5 border-black text-black focus:ring-black rounded-none cursor-pointer" type="checkbox"/>
+<span class="ml-sm font-body-lg text-body-lg text-primary group-hover:pl-xs transition-all">Sign off on Security Audit Report</span>
+</label>
+<label class="flex items-center p-sm editorial-divider cursor-pointer hover:bg-surface-container transition-colors group">
+<input class="w-5 h-5 border-black text-black focus:ring-black rounded-none cursor-pointer" type="checkbox"/>
+<span class="ml-sm font-body-lg text-body-lg text-primary group-hover:pl-xs transition-all">Review Design System v2 Proposals</span>
+</label>
+</div>
+</section>
+</div>
+<!-- Right Column: Schedule -->
+<div class="col-span-1 lg:col-span-4 pl-0 lg:pl-lg border-l-0 lg:border-l border-primary h-full">
+<div class="sticky top-24">
+<h3 class="font-headline-lg text-headline-lg text-primary mb-md pb-xs editorial-divider border-b-2 border-primary">Schedule</h3>
+<div class="relative border-l border-primary ml-xs pl-sm pb-lg">
+<div class="mb-lg relative">
+<div class="absolute -left-[25px] top-0 w-3 h-3 bg-black rounded-full border-2 border-white"></div>
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-xs">09:00 AM</span>
+<h4 class="font-headline-md text-headline-md text-primary">Standup</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Sync with Core Engineering</p>
+</div>
+<div class="mb-lg relative">
+<div class="absolute -left-[25px] top-0 w-3 h-3 bg-white rounded-full border-2 border-black"></div>
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-xs">11:30 AM</span>
+<h4 class="font-headline-md text-headline-md text-primary">Product Sync</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">Review roadmap for Q4 deliverables.</p>
+</div>
+<div class="mb-lg relative">
+<div class="absolute -left-[25px] top-0 w-3 h-3 bg-white rounded-full border-2 border-black"></div>
+<span class="font-label-caps text-label-caps text-on-surface-variant block mb-xs">02:00 PM</span>
+<h4 class="font-headline-md text-headline-md text-primary">Vendor Call</h4>
+<p class="font-body-md text-body-md text-on-surface-variant mt-xs">AWS SLA Negotiations.</p>
+</div>
+<!-- Image representation for schedule block -->
+<div class="mt-xl black-border p-sm bg-white">
+<img alt="Time management" class="w-full h-auto grayscale object-cover" data-alt="A macro shot of a sleek, minimalist analog clock face, high contrast black and white, sharp focus on the hands, professional business aesthetic, editorial style lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoWuCPM4g38GMCNAHgLPzitmtBaXCoce9HyswoJ9j4a9ND2BFKnX8JWV7DOhE8XTTmR6x0hw5cttj5ocA5M1NAgFhf2gUS3jar0VFpn6THREBWyhFfK4w7gHEAR8hkCrx1D8eqtAKkxYC0TjRWYvLRjtrSV4UBQfViOn1LZXu06s9H4XZe67kbn-Ew7q_vVP-rIBGjO-AfbjHOVtcU5D-jyH9tbSVZQqq9KAh1N5XhLBghMQfkekv--A"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script>
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }).toUpperCase();
+    </script>
+</body></html>

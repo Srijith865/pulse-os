@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pulse Docs - Knowledge Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Hanken+Grotesk:wght@500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary-fixed-variant": "#474747",
+                        "on-tertiary-container": "#848484",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#1a1b22",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#e2e2e2",
+                        "outline": "#7e7576",
+                        "on-secondary-container": "#616363",
+                        "error-container": "#ffdad6",
+                        "secondary-container": "#dfe0e0",
+                        "secondary-fixed": "#e2e2e2",
+                        "primary-container": "#1b1b1b",
+                        "tertiary": "#000000",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#5e5e5e",
+                        "on-surface": "#1a1b22",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "tertiary-fixed-dim": "#c6c6c6",
+                        "on-primary-container": "#848484",
+                        "secondary": "#5d5f5f",
+                        "surface-container-low": "#f4f2fd",
+                        "primary-fixed-dim": "#c6c6c6",
+                        "surface-container-high": "#e8e7f1",
+                        "background": "#fbf8ff",
+                        "on-primary-fixed": "#1b1b1b",
+                        "on-error": "#ffffff",
+                        "primary": "#000000",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#c6c6c6",
+                        "on-tertiary-fixed": "#1b1b1b",
+                        "surface-container-highest": "#e3e1ec",
+                        "on-surface-variant": "#4c4546",
+                        "inverse-surface": "#2f3038",
+                        "surface-variant": "#e3e1ec",
+                        "inverse-on-surface": "#f1effa",
+                        "outline-variant": "#cfc4c5",
+                        "surface-dim": "#dad9e3",
+                        "on-secondary-fixed-variant": "#454747",
+                        "surface-bright": "#fbf8ff",
+                        "surface-container": "#eeedf7",
+                        "tertiary-container": "#1b1b1b",
+                        "surface": "#fbf8ff",
+                        "on-primary-fixed-variant": "#474747"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "0px"
+                    },
+                    spacing: {
+                        "xl": "128px",
+                        "xs": "8px",
+                        "margin-mobile": "20px",
+                        "lg": "64px",
+                        "margin-desktop": "64px",
+                        "md": "32px",
+                        "base": "4px",
+                        "sm": "16px",
+                        "gutter": "24px"
+                    },
+                    fontFamily: {
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "body-md": ["Inter"],
+                        "label-caps": ["JetBrains Mono"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "display": ["Hanken Grotesk"],
+                        "caption": ["Inter"]
+                    },
+                    fontSize: {
+                        "body-lg": ["18px", { lineHeight: "1.6", fontWeight: "400" }],
+                        "headline-lg": ["32px", { lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "600" }],
+                        "body-md": ["14px", { lineHeight: "1.5", fontWeight: "400" }],
+                        "label-caps": ["12px", { lineHeight: "1", letterSpacing: "0.1em", fontWeight: "500" }],
+                        "headline-md": ["20px", { lineHeight: "1.4", fontWeight: "500" }],
+                        "headline-lg-mobile": ["24px", { lineHeight: "1.2", fontWeight: "600" }],
+                        "display": ["64px", { lineHeight: "1.1", letterSpacing: "-0.04em", fontWeight: "600" }],
+                        "caption": ["12px", { lineHeight: "1.4", fontWeight: "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen flex selection:bg-primary selection:text-on-primary">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col fixed left-0 top-0 h-full w-64 bg-surface border-r border-primary z-50">
+<div class="p-md border-b border-primary">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Pulse OS</h1>
+<p class="font-label-caps text-label-caps text-secondary mt-xs">System Intelligence</p>
+</div>
+<div class="flex flex-col p-sm gap-xs mt-sm flex-grow">
+<a class="flex items-center gap-sm text-primary p-sm hover:bg-secondary-container transition-colors duration-200 ease-in-out cursor-pointer font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="wb_sunny">wb_sunny</span>
+<span>Brief</span>
+</a>
+<a class="flex items-center gap-sm bg-primary text-on-primary p-sm transition-colors duration-200 ease-in-out cursor-pointer font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span>Docs</span>
+</a>
+<a class="flex items-center gap-sm text-primary p-sm hover:bg-secondary-container transition-colors duration-200 ease-in-out cursor-pointer font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+<span>Decide</span>
+</a>
+</div>
+<div class="p-md border-t border-primary mt-auto">
+<div class="flex items-center gap-sm cursor-pointer hover:opacity-80 transition-opacity">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container">
+<span class="material-symbols-outlined text-sm">person</span>
+</div>
+<span class="font-label-caps text-label-caps text-primary">User profile</span>
+</div>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col md:ml-64 min-h-screen">
+<!-- TopAppBar -->
+<header class="w-full border-b border-primary bg-surface z-40 sticky top-0 flex justify-between items-center px-lg py-sm min-h-[64px]">
+<div class="flex items-center">
+<span class="font-headline-md text-headline-md font-bold text-primary">System Console</span>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-secondary text-sm">search</span>
+<input class="pl-10 pr-4 py-2 border-b border-primary bg-transparent focus:outline-none focus:border-b-2 font-body-md text-body-md text-primary placeholder-secondary w-64 transition-all focus:w-80" placeholder="Search corpus..." type="text"/>
+</div>
+<button class="text-secondary hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-secondary hover:text-primary transition-colors cursor-pointer">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</header>
+<!-- Main Workspace -->
+<main class="flex-1 p-margin-mobile md:p-margin-desktop grid grid-cols-1 lg:grid-cols-12 gap-gutter max-w-[1440px] mx-auto w-full">
+<!-- Document Corpus List (Left Column) -->
+<aside class="col-span-1 lg:col-span-3 flex flex-col gap-md">
+<div class="flex items-center justify-between border-b border-primary pb-xs">
+<h2 class="font-label-caps text-label-caps text-primary">Document Corpus</h2>
+<span class="material-symbols-outlined text-sm text-secondary cursor-pointer hover:text-primary transition-colors">filter_list</span>
+</div>
+<div class="flex flex-col border border-primary bg-surface h-[calc(100vh-250px)] overflow-y-auto">
+<!-- List Item 1 -->
+<div class="p-sm border-b border-secondary-container hover:bg-secondary-container transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-caps text-label-caps text-secondary group-hover:text-primary">REP-094</span>
+<span class="text-caption font-caption text-secondary">2h ago</span>
+</div>
+<h3 class="font-body-md text-body-md font-bold text-primary mb-1">Q3 Financial Audit Summary</h3>
+<p class="font-caption text-caption text-secondary line-clamp-2">Comprehensive review of quarterly expenditures and revenue streams highlighting discrepancies in operational costs.</p>
+</div>
+<!-- List Item 2 (Active) -->
+<div class="p-sm border-b border-primary bg-primary text-on-primary cursor-pointer relative overflow-hidden">
+<div class="absolute inset-0 bg-white/10 pointer-events-none"></div>
+<div class="flex justify-between items-start mb-1 relative z-10">
+<span class="font-label-caps text-label-caps text-inverse-primary">SYS-402</span>
+<span class="text-caption font-caption text-inverse-primary">Yesterday</span>
+</div>
+<h3 class="font-body-md text-body-md font-bold text-on-primary mb-1 relative z-10">Neural Architecture Guidelines</h3>
+<p class="font-caption text-caption text-inverse-primary line-clamp-2 relative z-10">Structural paradigms for deploying localized knowledge bases within strict editorial constraints.</p>
+</div>
+<!-- List Item 3 -->
+<div class="p-sm border-b border-secondary-container hover:bg-secondary-container transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-caps text-label-caps text-secondary group-hover:text-primary">MEM-112</span>
+<span class="text-caption font-caption text-secondary">Oct 24</span>
+</div>
+<h3 class="font-body-md text-body-md font-bold text-primary mb-1">Design System Revision 2</h3>
+<p class="font-caption text-caption text-secondary line-clamp-2">Updates to border-radius policies and mandatory elimination of non-semantic shadows across components.</p>
+</div>
+<!-- List Item 4 -->
+<div class="p-sm border-b border-secondary-container hover:bg-secondary-container transition-colors cursor-pointer group">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label-caps text-label-caps text-secondary group-hover:text-primary">MEM-115</span>
+<span class="text-caption font-caption text-secondary">Oct 22</span>
+</div>
+<h3 class="font-body-md text-body-md font-bold text-primary mb-1">User Research Findings</h3>
+<p class="font-caption text-caption text-secondary line-clamp-2">Qualitative analysis of interface clarity during high-cognitive-load knowledge extraction tasks.</p>
+</div>
+</div>
+</aside>
+<!-- Center/Right Area: Extracted Entities & Topology -->
+<section class="col-span-1 lg:col-span-9 flex flex-col gap-lg">
+<!-- Extracted Entities (Data Grid) -->
+<div>
+<div class="flex items-center justify-between border-b border-primary pb-xs mb-md">
+<h2 class="font-label-caps text-label-caps text-primary">Extracted Entities: <span class="text-secondary">Neural Architecture Guidelines</span></h2>
+<button class="font-label-caps text-label-caps border border-primary px-3 py-1 hover:bg-primary hover:text-on-primary transition-colors uppercase tracking-widest text-xs">Export JSON</button>
+</div>
+<div class="border border-primary bg-surface overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-primary bg-surface-container-low">
+<th class="p-sm font-label-caps text-label-caps text-primary">Entity Type</th>
+<th class="p-sm font-label-caps text-label-caps text-primary">Value</th>
+<th class="p-sm font-label-caps text-label-caps text-primary">Confidence</th>
+<th class="p-sm font-label-caps text-label-caps text-primary text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-on-surface">
+<tr class="border-b border-secondary-container hover:bg-secondary-container transition-colors">
+<td class="p-sm"><span class="border border-primary px-2 py-0.5 text-xs font-label-caps uppercase">Concept</span></td>
+<td class="p-sm font-bold">Vector Embedding Space</td>
+<td class="p-sm font-label-caps">99.8%</td>
+<td class="p-sm text-right">
+<button class="text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm">edit</span></button>
+</td>
+</tr>
+<tr class="border-b border-secondary-container hover:bg-secondary-container transition-colors">
+<td class="p-sm"><span class="border border-primary px-2 py-0.5 text-xs font-label-caps uppercase">Constraint</span></td>
+<td class="p-sm font-bold">Strict Editorial Style</td>
+<td class="p-sm font-label-caps">98.2%</td>
+<td class="p-sm text-right">
+<button class="text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm">edit</span></button>
+</td>
+</tr>
+<tr class="border-b border-secondary-container hover:bg-secondary-container transition-colors">
+<td class="p-sm"><span class="border border-primary px-2 py-0.5 text-xs font-label-caps uppercase">Parameter</span></td>
+<td class="p-sm font-bold">Max Tokens: 4096</td>
+<td class="p-sm font-label-caps text-secondary">87.5%</td>
+<td class="p-sm text-right">
+<button class="text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm">edit</span></button>
+</td>
+</tr>
+<tr class="hover:bg-secondary-container transition-colors">
+<td class="p-sm"><span class="border border-primary px-2 py-0.5 text-xs font-label-caps uppercase bg-primary text-on-primary">Critical</span></td>
+<td class="p-sm font-bold">Zero-Shadow Policy</td>
+<td class="p-sm font-label-caps">100.0%</td>
+<td class="p-sm text-right">
+<button class="text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm">edit</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Knowledge Topology (Visualization Area) -->
+<div class="flex-grow flex flex-col">
+<div class="flex items-center justify-between border-b border-primary pb-xs mb-md">
+<h2 class="font-label-caps text-label-caps text-primary">Knowledge Topology</h2>
+<div class="flex gap-2">
+<button class="text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm">zoom_in</span></button>
+<button class="text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm">zoom_out</span></button>
+<button class="text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined text-sm">center_focus_strong</span></button>
+</div>
+</div>
+<div class="flex-grow border border-primary bg-surface relative overflow-hidden min-h-[400px]">
+<!-- Abstract representations of nodes -->
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-surface-container-high via-surface to-surface opacity-50"></div>
+<!-- Grid Background -->
+<div class="absolute inset-0" style="background-image: linear-gradient(to right, #e2e2e2 1px, transparent 1px), linear-gradient(to bottom, #e2e2e2 1px, transparent 1px); background-size: 40px 40px;"></div>
+<!-- Central Node -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-12 bg-primary text-on-primary flex items-center justify-center font-label-caps text-xs z-10 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                            SYS-402
+                        </div>
+<!-- Connecting Lines (SVG) -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+<line stroke="#000000" stroke-dasharray="4 4" stroke-width="1" x1="50%" x2="30%" y1="50%" y2="25%"></line>
+<line stroke="#000000" stroke-width="1" x1="50%" x2="75%" y1="50%" y2="30%"></line>
+<line stroke="#000000" stroke-width="1" x1="50%" x2="60%" y1="50%" y2="80%"></line>
+<line stroke="#7e7576" stroke-width="1" x1="50%" x2="20%" y1="50%" y2="70%"></line>
+</svg>
+<!-- Peripheral Nodes -->
+<div class="absolute top-[25%] left-[30%] -translate-x-1/2 -translate-y-1/2 border border-primary bg-surface px-4 py-2 font-label-caps text-xs text-secondary hover:text-primary hover:border-black cursor-pointer transition-all">
+                            MEM-112
+                        </div>
+<div class="absolute top-[30%] left-[75%] -translate-x-1/2 -translate-y-1/2 border border-primary bg-surface px-4 py-2 font-label-caps text-xs text-primary shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-secondary-container transition-colors cursor-pointer">
+                            Vector Space
+                        </div>
+<div class="absolute top-[80%] left-[60%] -translate-x-1/2 -translate-y-1/2 border border-primary bg-surface px-4 py-2 font-label-caps text-xs text-primary shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-secondary-container transition-colors cursor-pointer">
+                            Editorial Style
+                        </div>
+<div class="absolute top-[70%] left-[20%] -translate-x-1/2 -translate-y-1/2 border border-outline bg-surface-container-low px-4 py-2 font-label-caps text-xs text-outline cursor-not-allowed">
+                            Draft (Unverified)
+                        </div>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body></html>
