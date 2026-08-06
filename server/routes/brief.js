@@ -199,7 +199,7 @@ router.get('/generate', async (req, res) => {
     `;
 
     // Generate brief using Gemini with retry logic for 503 errors
-    const model = ai.getGenerativeModel({ model: "gemini-3.6-flash" });
+    const model = ai.getGenerativeModel({ model: "gemini-flash-lite-latest" });
     let aiResponse;
     let retries = 3;
     while (retries > 0) {
