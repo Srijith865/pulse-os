@@ -60,11 +60,20 @@ router.post('/upload', upload.single('file'), async (req, res) => {
     const fileUri = uploadResponse.file.uri;
     
     const prompt = `
-      You are Pulse OS. Analyze the attached media (which could be a document, image, audio, or video) and extract structured entities.
-      Extract Concepts, Constraints, Parameters, and Criticals.
+      You are Pulse OS. Analyze the attached media (which could be a document, image, audio, or video).
       
-      Format as JSON:
+      Extract the following information:
+      1. A concise 2-3 sentence executive summary of the document's purpose.
+      2. 3 actionable strategic suggestions or next steps derived from the content.
+      3. Structured entities (Concepts, Constraints, Parameters, and Criticals).
+      
+      Format EXACTLY as JSON:
       {
+        "summary": "This document outlines the Q3 marketing strategy...",
+        "suggestions": [
+          "Allocate budget for the new ad campaign",
+          "Schedule a review meeting with the design team"
+        ],
         "entities": [
           { "type": "Concept", "value": "Extracted text", "confidence": "99.8%" }
         ]

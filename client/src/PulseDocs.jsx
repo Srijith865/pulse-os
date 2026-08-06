@@ -122,11 +122,56 @@ const PulseDocs = () => {
 
       {/* Center/Right Area: Extracted Entities & Topology */}
       <section className="col-span-1 lg:col-span-9 flex flex-col gap-lg">
+        
+        {/* Document Intelligence Overview (Summary & Suggestions) */}
+        {activeDoc && activeDoc.entities && (activeDoc.entities.summary || activeDoc.entities.suggestions) && (
+          <div className="flex flex-col gap-md">
+            
+            {/* Summary Panel */}
+            {activeDoc.entities.summary && (
+              <div className="border border-primary bg-surface p-md relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-full bg-primary"></div>
+                <h2 className="font-label-caps text-label-caps text-primary mb-xs flex items-center gap-2">
+                  <span className="material-symbols-outlined text-[16px]">subject</span>
+                  Executive Summary
+                </h2>
+                <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                  {activeDoc.entities.summary}
+                </p>
+              </div>
+            )}
+
+            {/* Suggestions Panel */}
+            {activeDoc.entities.suggestions && activeDoc.entities.suggestions.length > 0 && (
+              <div className="border border-primary bg-surface p-md">
+                <h2 className="font-label-caps text-label-caps text-primary mb-sm flex items-center gap-2">
+                  <span className="material-symbols-outlined text-[16px]">lightbulb</span>
+                  Strategic Suggestions
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-sm">
+                  {activeDoc.entities.suggestions.map((suggestion, idx) => (
+                    <div key={idx} className="border border-secondary-container bg-surface-container-low p-sm flex items-start gap-2 hover:border-primary transition-colors cursor-default">
+                      <span className="font-label-caps text-primary bg-secondary-container px-2 py-0.5 mt-0.5 text-[10px]">
+                        0{idx + 1}
+                      </span>
+                      <p className="font-body-md text-sm text-primary">
+                        {suggestion}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            
+          </div>
+        )}
+
         {/* Extracted Entities (Data Grid) */}
         <div>
           <div className="flex items-center justify-between border-b border-primary pb-xs mb-md">
-            <h2 className="font-label-caps text-label-caps text-primary">
-              Extracted Entities: <span className="text-secondary">{activeDoc ? activeDoc.file_name : 'No Document Selected'}</span>
+            <h2 className="font-label-caps text-label-caps text-primary flex items-center gap-2">
+              <span className="material-symbols-outlined text-[16px]">data_object</span>
+              Raw Entities: <span className="text-secondary">{activeDoc ? activeDoc.file_name : 'No Document Selected'}</span>
             </h2>
           </div>
           <div className="border border-primary bg-surface overflow-x-auto min-h-[200px]">
