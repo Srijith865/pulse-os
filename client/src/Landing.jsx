@@ -4,6 +4,7 @@ import { ReactLenis } from "lenis/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import FluidBackground from "./FluidBackground";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -91,8 +92,10 @@ export default function Landing() {
 
   return (
     <ReactLenis root>
-      <main ref={container} className="bg-[#fbf8ff] text-black overflow-hidden relative">
-        <header className="fixed inset-x-0 top-0 z-50 border-b border-black/10 bg-[#fbf8ff]/80 backdrop-blur-md">
+      <main ref={container} className="bg-transparent text-black overflow-hidden relative">
+        <FluidBackground />
+        
+        <header className="fixed inset-x-0 top-0 z-50 border-b border-black/10 bg-[#fbf8ff]/60 backdrop-blur-md">
           <div className="mx-auto flex h-14 max-w-[1600px] items-center justify-between px-5">
             <span className="label-mono font-medium">Pulse OS ®</span>
             <nav className="label-mono hidden gap-8 text-black/60 md:flex">
@@ -115,7 +118,7 @@ export default function Landing() {
         {/* HERO SECTION */}
         <section className="hero-section relative flex flex-col justify-center items-center min-h-[120vh] px-5 pt-28 pb-6">
           <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none">
-            <h1 className="hero-pulse-text font-bold text-[35vw] text-black/[0.03] select-none leading-none tracking-tighter" style={{ fontFamily: 'Hanken Grotesk' }}>
+            <h1 className="hero-pulse-text font-bold text-[35vw] text-indigo-900/15 select-none leading-none tracking-tighter" style={{ fontFamily: 'Hanken Grotesk' }}>
               PULSE
             </h1>
           </div>
@@ -157,12 +160,12 @@ export default function Landing() {
         </div>
 
         {/* HORIZONTAL SCROLL SECTION (MODULES) */}
-        <section id="modules" className="horizontal-scroll-section h-screen flex relative overflow-hidden bg-white">
+        <section id="modules" className="horizontal-scroll-section h-screen flex relative overflow-hidden bg-transparent">
           <div className="flex w-[400vw] h-full">
             {MODULES.map((m, i) => (
               <div key={m.n} className="module-panel w-screen h-full flex items-center justify-center px-10 border-r border-black/10">
                 <div className="max-w-3xl flex flex-col items-start gap-6 relative">
-                  <span className="text-[15vw] font-bold text-black/5 absolute -top-[50%] -left-[10%] select-none z-0 tracking-tighter" style={{ fontFamily: 'Hanken Grotesk' }}>{m.n}</span>
+                  <span className="text-[15vw] font-bold text-indigo-900/10 absolute -top-[50%] -left-[10%] select-none z-0 tracking-tighter" style={{ fontFamily: 'Hanken Grotesk' }}>{m.n}</span>
                   <div className="relative z-10">
                     <span className="label-mono rounded-full border border-black px-3 py-1.5 mb-6 inline-block">
                       {m.tag}
@@ -179,7 +182,7 @@ export default function Landing() {
         </section>
 
         {/* HOW IT WORKS */}
-        <section id="how" className="bg-black text-white relative z-10 py-32 px-5">
+        <section id="how" className="bg-black/90 text-white relative z-10 py-32 px-5 backdrop-blur-md">
           <div className="mx-auto max-w-[1600px]">
             <p className="label-mono opacity-60 fade-up">[ How it works ]</p>
             <h2 className="display-xl mt-4 text-[10vw] leading-[0.88] md:text-[6vw] fade-up">
@@ -221,7 +224,7 @@ export default function Landing() {
         </section>
 
         {/* CTA */}
-        <section id="cta" className="border-t border-black/10 px-5 py-32 bg-white fade-up">
+        <section id="cta" className="border-t border-black/10 px-5 py-32 bg-transparent fade-up">
           <div className="mx-auto max-w-[1600px] text-center">
             <h2 className="display-xl text-[13vw] leading-[0.86] md:text-[9vw]">
               Enter Pulse OS
@@ -238,7 +241,7 @@ export default function Landing() {
           </div>
         </section>
 
-        <footer className="border-t border-black/10 px-5 py-8 bg-[#fbf8ff]">
+        <footer className="border-t border-black/10 px-5 py-8 bg-transparent">
           <div className="label-mono mx-auto flex max-w-[1600px] flex-wrap justify-between gap-4 text-black/60">
             <span>© {new Date().getFullYear()} Pulse OS</span>
             <span>React · Vite · Gemini · Supabase</span>
