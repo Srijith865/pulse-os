@@ -47,21 +47,13 @@
     border: 1px solid #000000;
   }
 
-  /* ── Glass card ── */
-  .glass-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--glass-shadow);
+  /* ── Linear Surfaces ── */
+  .linear-surface {
+    @apply bg-white dark:bg-[#1A1B22] border border-black/10 dark:border-white/10 rounded-lg shadow-sm;
   }
 
-  .glass-card-lg {
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--glass-shadow-lg);
+  .linear-surface-elevated {
+    @apply bg-white dark:bg-[#25262B] border border-black/10 dark:border-white/10 rounded-lg shadow-md;
   }
 
   /* ── Accent gradient text ── */
@@ -123,11 +115,11 @@
 
   /* ── Premium hover lift ── */
   .hover-lift {
-    transition: transform 250ms var(--ease-out), box-shadow 250ms var(--ease-out);
+    transition: transform 150ms var(--ease-out), box-shadow 150ms var(--ease-out);
   }
   .hover-lift:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--glass-shadow-lg);
+    transform: translateY(-1px);
+    @apply shadow-md;
   }
 
   /* ── Dot grid background ── */
@@ -184,6 +176,29 @@
 
   .rise {
     animation: rise-in 0.9s cubic-bezier(0.23, 1, 0.32, 1) both;
+  }
+
+  /* ── Emil Kowalski Entry Animations (@starting-style) ── */
+  .enter-fade-up {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 400ms var(--ease-out), transform 400ms var(--ease-out);
+    
+    @starting-style {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+  }
+
+  .enter-scale {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 300ms var(--ease-out), transform 300ms var(--ease-out);
+
+    @starting-style {
+      opacity: 0;
+      transform: scale(0.95);
+    }
   }
 }
 

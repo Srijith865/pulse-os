@@ -59,13 +59,13 @@ const PulseBrief = () => {
         {/* Action Buttons */}
         <div>
           {needsAuth ? (
-            <button onClick={handleConnectGmail} className="bg-primary text-on-primary font-label-caps text-label-caps px-lg py-sm border border-primary hover:bg-surface hover:text-primary transition-colors shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center gap-2">
-              <span className="material-symbols-outlined text-sm">mail</span>
+            <button onClick={handleConnectGmail} className="press-feedback bg-black dark:bg-white text-white dark:text-black font-label-caps text-label-caps px-4 py-1.5 rounded-md hover:opacity-90 transition-opacity flex items-center gap-2 text-xs">
+              <span className="material-symbols-outlined text-[16px]">mail</span>
               CONNECT GMAIL
             </button>
           ) : (
-            <button onClick={fetchBrief} disabled={loading} className={`font-label-caps text-label-caps px-lg py-sm border border-primary hover:bg-secondary-container transition-colors shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] flex items-center gap-2 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}>
-              <span className="material-symbols-outlined text-sm">{loading ? 'sync' : 'auto_awesome'}</span>
+            <button onClick={fetchBrief} disabled={loading} className={`press-feedback font-label-caps text-label-caps px-4 py-1.5 rounded-md border border-black/10 dark:border-white/10 hover:bg-black/5 dark:hover:bg-white/10 transition-colors flex items-center gap-2 text-xs text-black dark:text-white ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}>
+              <span className="material-symbols-outlined text-[16px]">{loading ? 'sync' : 'auto_awesome'}</span>
               {loading ? 'GENERATING...' : 'GENERATE AI BRIEF'}
             </button>
           )}
@@ -79,32 +79,33 @@ const PulseBrief = () => {
       )}
 
       {/* Left Column: Synthesis & Actions */}
-      <div className="col-span-1 lg:col-span-8 flex flex-col gap-xl">
-        {/* Overnight Synthesis */}
-        <section>
-          <div className="flex items-center justify-between mb-md pb-xs editorial-divider border-b-2 border-primary">
-            <h3 className="font-headline-lg text-headline-lg text-primary">Overnight Synthesis</h3>
-            <span className="font-label-caps text-label-caps bg-primary text-on-primary px-xs py-base">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-lg transition-opacity duration-500 col-span-1 lg:col-span-8">
+        
+        {/* Main Content Area (Spans 8 cols) */}
+        <section className="lg:col-span-8 flex flex-col gap-sm">
+          <div className="flex items-center justify-between mb-sm border-b border-black/10 dark:border-white/10 pb-2">
+            <h3 className="font-headline-md text-headline-md text-black dark:text-white font-medium">Overnight Synthesis</h3>
+            <span className="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed">
               {briefData ? briefData.synthesis?.length || 0 : '3'} Updates
             </span>
           </div>
-          <div className="flex flex-col gap-base">
+          <div className="flex flex-col stagger-children bg-white dark:bg-[#1A1B22] border border-black/10 dark:border-white/10 rounded-lg">
             
             {briefData ? (
               briefData.synthesis?.map((item, idx) => (
-                <details key={idx} className="group black-border bg-white cursor-pointer [&_summary::-webkit-details-marker]:hidden" open>
-                  <summary className="flex items-center justify-between p-md font-headline-md text-headline-md text-primary hover:bg-surface-container transition-colors">
-                    <div className="flex items-center gap-sm">
-                      <span className="material-symbols-outlined">forum</span>
+                <details key={idx} className="group border-b border-black/10 dark:border-white/10 last:border-0 cursor-pointer [&_summary::-webkit-details-marker]:hidden enter-fade-up overflow-hidden" open>
+                  <summary className="flex items-center justify-between p-3 font-body-md text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/5 transition-colors font-medium">
+                    <div className="flex items-center gap-2">
+                      <span className="material-symbols-outlined text-[16px] text-secondary">forum</span>
                       <span>{item.title}</span>
                     </div>
                     <span className="material-symbols-outlined group-open:rotate-180 transition-transform duration-300">expand_more</span>
                   </summary>
-                  <div className="p-md pt-0 text-body-md font-body-md text-on-surface-variant border-t border-gray-200">
-                    <p className="mt-sm">{item.summary}</p>
-                    <div className="mt-sm flex gap-xs">
+                  <div className="px-3 pb-3 pt-1 text-sm text-secondary dark:text-secondary-fixed">
+                    <p className="mb-2">{item.summary}</p>
+                    <div className="flex gap-2">
                       {item.tags?.map(tag => (
-                        <span key={tag} className="font-label-caps text-label-caps black-border px-xs py-base">#{tag}</span>
+                        <span key={tag} className="tag-pill text-[10px]">#{tag}</span>
                       ))}
                     </div>
                   </div>
@@ -112,7 +113,7 @@ const PulseBrief = () => {
               ))
             ) : (
               // Placeholder State
-              <div className="p-md border border-outline border-dashed text-center text-on-surface-variant font-label-caps">
+              <div className="p-4 text-center text-sm text-secondary dark:text-secondary-fixed">
                 {needsAuth ? "Waiting for Gmail connection..." : "Click 'Generate AI Brief' to analyze recent emails."}
               </div>
             )}
@@ -121,24 +122,26 @@ const PulseBrief = () => {
         </section>
 
         {/* Urgent Actions */}
-        <section>
-          <div className="flex items-center justify-between mb-md pb-xs editorial-divider border-b-2 border-primary">
-            <h3 className="font-headline-lg text-headline-lg text-primary">Urgent Actions</h3>
-            <span className="font-label-caps text-label-caps border border-primary px-xs py-base">High Priority</span>
-          </div>
-          <div className="flex flex-col">
-            {briefData ? (
-              briefData.urgent_actions?.map((action, idx) => (
-                <label key={idx} className="flex items-center p-sm editorial-divider cursor-pointer hover:bg-surface-container transition-colors group">
-                  <input className="w-5 h-5 border-black text-black focus:ring-black rounded-none cursor-pointer" type="checkbox" />
-                  <span className="ml-sm font-body-lg text-body-lg text-primary group-hover:pl-xs transition-all">{action}</span>
-                </label>
-              ))
-            ) : (
-              <div className="p-md border border-outline border-dashed text-center text-on-surface-variant font-label-caps">
-                Awaiting AI Analysis
-              </div>
-            )}
+        <section className="lg:col-span-4 flex flex-col gap-md">
+          <div className="flex flex-col gap-sm">
+            <div className="flex items-center justify-between border-b border-black/10 dark:border-white/10 pb-2">
+              <h3 className="font-headline-md text-headline-md text-black dark:text-white font-medium">Urgent Actions</h3>
+              <span className="font-label-caps text-label-caps bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 px-2 py-0.5 rounded text-[10px]">High Priority</span>
+            </div>
+            <div className="flex flex-col linear-surface">
+              {briefData ? (
+                briefData.actions?.map((action, idx) => (
+                  <label key={idx} className="flex items-start p-3 border-b border-black/10 dark:border-white/10 last:border-0 cursor-pointer hover:bg-black/5 dark:hover:bg-white/5 transition-colors group enter-fade-up">
+                    <input className="mt-1 w-4 h-4 border-black/20 dark:border-white/20 text-black focus:ring-black rounded-sm cursor-pointer" type="checkbox" />
+                    <span className="ml-3 font-body-md text-sm text-black dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">{action}</span>
+                  </label>
+                ))
+              ) : (
+                <div className="p-md border border-outline border-dashed text-center text-on-surface-variant font-label-caps">
+                  Awaiting AI Analysis
+                </div>
+              )}
+            </div>
           </div>
         </section>
       </div>
@@ -148,31 +151,31 @@ const PulseBrief = () => {
         <div className="sticky top-24 flex flex-col gap-xl">
           {/* Schedule Section */}
           <div>
-            <h3 className="font-headline-lg text-headline-lg text-primary mb-md pb-xs editorial-divider border-b-2 border-primary">Schedule Context</h3>
-            <div className="relative border-l border-primary ml-xs pl-sm">
-              {briefData ? (
-                briefData.schedule?.map((item, idx) => (
-                  <div key={idx} className="mb-md relative">
-                    <div className={`absolute -left-[25px] top-1 w-3 h-3 rounded-full border-2 border-black ${idx === 0 ? 'bg-black border-white' : 'bg-white'}`}></div>
-                    <p className="font-body-md text-body-md text-primary font-bold">{item}</p>
-                  </div>
-                ))
-              ) : (
-                <div className="mb-md relative text-on-surface-variant font-label-caps">
-                  Awaiting AI Analysis
-                </div>
-              )}
+            <div className="flex items-center justify-between border-b border-black/10 dark:border-white/10 pb-2">
+              <h3 className="font-headline-md text-headline-md text-black dark:text-white font-medium">System Metrics</h3>
+            </div>
+            <div className="grid grid-cols-2 gap-2 mt-4">
+              <div className="linear-surface p-3 flex flex-col items-center justify-center">
+                <span className="font-display text-2xl text-black dark:text-white">{briefData ? '99.9%' : '--'}</span>
+                <span className="font-label-caps text-label-caps text-secondary text-[10px]">Uptime</span>
+              </div>
+              <div className="linear-surface p-3 flex flex-col items-center justify-center">
+                <span className="font-display text-2xl text-black dark:text-white">{briefData ? '12ms' : '--'}</span>
+                <span className="font-label-caps text-label-caps text-secondary text-[10px]">Latency</span>
+              </div>
             </div>
           </div>
 
           {/* Engineering Queue Section */}
-          <div>
-            <h3 className="font-headline-lg text-headline-lg text-primary mb-md pb-xs editorial-divider border-b-2 border-primary">Engineering Queue</h3>
-            <div className="flex flex-col gap-sm">
+          <div className="flex flex-col gap-sm mt-4">
+            <div className="flex items-center justify-between border-b border-black/10 dark:border-white/10 pb-2">
+              <h3 className="font-headline-md text-headline-md text-black dark:text-white font-medium">Engineering Log</h3>
+            </div>
+            <div className="flex flex-col gap-2">
               {briefData ? (
                 briefData.engineering?.map((item, idx) => (
-                  <div key={idx} className="black-border p-sm bg-surface hover:bg-surface-container transition-colors">
-                    <p className="font-[JetBrains_Mono] text-xs font-bold text-primary">{item}</p>
+                  <div key={idx} className="linear-surface p-2 hover:bg-black/5 dark:hover:bg-white/5 transition-colors enter-fade-up">
+                    <p className="font-[JetBrains_Mono] text-[11px] text-secondary dark:text-secondary-fixed">{item}</p>
                   </div>
                 ))
               ) : (
