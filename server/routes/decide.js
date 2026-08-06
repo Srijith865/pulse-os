@@ -62,7 +62,7 @@ router.post('/evaluate', async (req, res) => {
       }
     `;
 
-    const model = ai.getGenerativeModel({ model: "gemini-3.6-flash" });
+    const model = ai.getGenerativeModel({ model: "gemini-2.0-flash" });
     const aiResponse = await model.generateContent(prompt);
     
     const text = aiResponse.response.text();
