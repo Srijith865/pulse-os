@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate, Outlet } from 'react-router-dom';
 import { supabase } from './supabaseClient';
-import { LogOut } from 'lucide-react';
 
 const Sidebar = () => {
   const location = useLocation();
@@ -68,9 +67,9 @@ const Sidebar = () => {
         </div>
         <button 
           onClick={handleLogout}
-          className="flex items-center gap-2 text-sm text-red-500 hover:text-red-400 transition-colors uppercase font-bold tracking-wider"
+          className="flex items-center gap-2 text-sm text-error hover:text-error/80 transition-colors uppercase font-bold tracking-wider cursor-pointer"
         >
-          <LogOut className="w-4 h-4" />
+          <span className="material-symbols-outlined text-[16px]">logout</span>
           Secure Logout
         </button>
       </div>

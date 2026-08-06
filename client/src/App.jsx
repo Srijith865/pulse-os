@@ -7,7 +7,6 @@ import PulseDecide from './PulseDecide';
 import PulseSearch from './PulseSearch';
 import PulseDocs from './PulseDocs';
 import Login from './Login';
-import { Loader2 } from 'lucide-react';
 
 function ProtectedRoute({ children }) {
   const [session, setSession] = useState(null);
@@ -30,8 +29,8 @@ function ProtectedRoute({ children }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#09090b] flex items-center justify-center">
-        <Loader2 className="w-8 h-8 text-zinc-500 animate-spin" />
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <span className="material-symbols-outlined animate-spin text-[32px] text-primary">sync</span>
       </div>
     );
   }
