@@ -2,6 +2,7 @@ const express = require('express');
 const multer = require('multer');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const { createClient } = require('@supabase/supabase-js');
+const fs = require('fs');
 const router = express.Router();
 
 // Initialize Supabase
