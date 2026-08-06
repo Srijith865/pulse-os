@@ -130,16 +130,17 @@ export default function Login() {
           </form>
         </div>
 
-        <div className="p-sm editorial-divider border-t border-primary bg-surface-container-low text-center">
+        <div className="p-sm editorial-divider border-t border-primary bg-surface-container-low text-center mt-4">
           <button
             type="button"
             onClick={() => {
               setIsRegister(!isRegister);
               setError('');
             }}
-            className="font-label-caps text-label-caps text-secondary hover:text-primary transition-colors uppercase cursor-pointer"
+            className="font-label-caps text-label-caps text-primary hover:bg-secondary-container hover:text-primary transition-colors uppercase cursor-pointer border-b-2 border-primary pb-1 tracking-widest font-bold inline-flex items-center gap-1"
           >
             {isRegister ? 'Switch to Authentication' : 'Establish New Identity'}
+            <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
           </button>
         </div>
 
