@@ -14,33 +14,19 @@ export default function Login() {
     e.preventDefault();
     setLoading(true);
     setError('');
-    
+
     try {
       if (isRegister) {
-        // Register mode
-        const { data, error } = await supabase.auth.signUp({
-          email,
-          password,
-        });
-        
+        const { data, error } = await supabase.auth.signUp({ email, password });
         if (error) throw error;
-        
         if (data.session) {
           navigate('/app/brief');
         } else {
-          // If session is null but no error, usually means "Confirm Email" is still enabled.
-          // Fallback just in case.
           setError('Registration successful. If you cannot log in, please ensure "Confirm email" is disabled in Supabase, or check your email.');
         }
       } else {
-        // Login mode
-        const { data, error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
-        
+        const { data, error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
-        
         if (data.session) {
           navigate('/app/brief');
         }
@@ -53,32 +39,43 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-on-background font-body-md text-body-md antialiased flex items-center justify-center p-md">
-      <div className="w-full max-w-md bg-surface black-border p-0 flex flex-col shadow-2xl">
-        
-        <div className="p-lg editorial-divider flex flex-col items-center">
-          <h1 className="font-headline-md text-headline-md font-bold text-primary mb-xs">
+    <div className="min-h-screen text-on-background font-body-md text-body-md antialiased flex items-center justify-center p-md relative overflow-hidden dot-grid">
+
+      {/* Ambient blobs */}
+      <div className="gradient-blob" style={{ background: 'linear-gradient(135deg, #6366f1, #a78bfa)', top: '-200px', right: '-100px' }} />
+      <div className="gradient-blob" style={{ background: 'linear-gradient(135deg, #f59e0b, #ec4899)', bottom: '-300px', left: '-200px', animationDelay: '-10s' }} />
+
+      <div className="w-full max-w-md relative z-10 stagger-children">
+
+        {/* Logo / Header */}
+        <div className="flex flex-col items-center mb-lg">
+          <div className="w-14 h-14 rounded-2xl bg-primary text-on-primary flex items-center justify-center mb-sm glow-md">
+            <span className="material-symbols-outlined text-[28px]">shield</span>
+          </div>
+          <h1 className="font-headline-md text-headline-md font-bold text-primary">
             {isRegister ? 'Initialize Access' : 'System Authentication'}
           </h1>
-          <p className="font-label-caps text-label-caps text-on-surface-variant uppercase">
+          <p className="font-label-caps text-label-caps text-on-surface-variant uppercase mt-xs">
             Pulse OS Protocol
           </p>
         </div>
 
-        <div className="p-lg">
+        {/* Card */}
+        <div className="glass-card-lg rounded-3xl p-lg">
+
           {error && (
-            <div className="mb-md p-sm bg-error-container text-on-error-container text-sm black-border">
+            <div className="mb-md p-sm bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl">
               {error}
             </div>
           )}
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-md">
-            
+
             <div className="flex flex-col gap-xs">
               <label htmlFor="email" className="font-label-caps text-label-caps text-primary uppercase">
                 Identity (Email)
               </label>
-              <div className="flex items-center black-border bg-white px-sm focus-within:ring-1 focus-within:ring-primary transition-all">
+              <div className="flex items-center bg-white/70 border border-black/10 rounded-xl px-sm focus-within:border-indigo-400 focus-within:ring-2 focus-within:ring-indigo-100 transition-all">
                 <span className="material-symbols-outlined text-secondary mr-sm text-[20px]">person</span>
                 <input
                   id="email"
@@ -96,7 +93,7 @@ export default function Login() {
               <label htmlFor="password" className="font-label-caps text-label-caps text-primary uppercase">
                 Passcode
               </label>
-              <div className="flex items-center black-border bg-white px-sm focus-within:ring-1 focus-within:ring-primary transition-all">
+              <div className="flex items-center bg-white/70 border border-black/10 rounded-xl px-sm focus-within:border-indigo-400 focus-within:ring-2 focus-within:ring-indigo-100 transition-all">
                 <span className="material-symbols-outlined text-secondary mr-sm text-[20px]">key</span>
                 <input
                   id="password"
@@ -113,7 +110,7 @@ export default function Login() {
             <button
               type="submit"
               disabled={loading || !email || !password}
-              className="w-full bg-primary text-on-primary py-sm px-md font-label-caps text-label-caps uppercase hover:bg-secondary-container hover:text-primary transition-colors duration-200 ease-in-out black-border cursor-pointer flex items-center justify-center gap-sm disabled:opacity-50 disabled:cursor-not-allowed mt-xs"
+              className="press-feedback w-full bg-primary text-on-primary py-sm px-md font-label-caps text-label-caps uppercase rounded-xl cursor-pointer flex items-center justify-center gap-sm disabled:opacity-50 disabled:cursor-not-allowed mt-xs hover:opacity-90 transition-opacity glow-sm"
             >
               {loading ? (
                 <span className="material-symbols-outlined animate-spin text-[20px]">sync</span>
@@ -130,17 +127,15 @@ export default function Login() {
           </form>
         </div>
 
-        <div className="p-sm editorial-divider border-t border-primary bg-surface-container-low text-center mt-4">
+        {/* Toggle */}
+        <div className="text-center mt-md">
           <button
             type="button"
-            onClick={() => {
-              setIsRegister(!isRegister);
-              setError('');
-            }}
-            className="font-label-caps text-label-caps text-primary hover:bg-secondary-container hover:text-primary transition-colors uppercase cursor-pointer border-b-2 border-primary pb-1 tracking-widest font-bold inline-flex items-center gap-1"
+            onClick={() => { setIsRegister(!isRegister); setError(''); }}
+            className="font-label-caps text-label-caps text-primary hover:text-indigo-600 transition-colors uppercase cursor-pointer inline-flex items-center gap-1 border-b border-primary/30 pb-0.5"
           >
             {isRegister ? 'Switch to Authentication' : 'Establish New Identity'}
-            <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+            <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
           </button>
         </div>
 
