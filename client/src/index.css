@@ -149,7 +149,6 @@
     animation: blobFloat 20s ease-in-out infinite alternate;
   }
 
-  /* ── Tag pill ── */
   .tag-pill {
     display: inline-flex;
     align-items: center;
@@ -162,6 +161,29 @@
     border: 1px solid rgba(99, 102, 241, 0.2);
     background: rgba(99, 102, 241, 0.06);
     color: #6366f1;
+  }
+
+  .label-mono {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.6875rem;
+  }
+
+  .display-xl {
+    font-family: 'Hanken Grotesk', system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.045em;
+    line-height: 0.86;
+    text-transform: uppercase;
+  }
+
+  .marquee-track {
+    animation: marquee-x 26s linear infinite;
+  }
+
+  .rise {
+    animation: rise-in 0.9s cubic-bezier(0.23, 1, 0.32, 1) both;
   }
 }
 
@@ -177,6 +199,26 @@
   33%  { transform: translate(30px, -50px) scale(1.05); }
   66%  { transform: translate(-20px, 20px) scale(0.95); }
   100% { transform: translate(10px, -30px) scale(1.02); }
+}
+
+@keyframes marquee-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ── Reduced motion ── */
