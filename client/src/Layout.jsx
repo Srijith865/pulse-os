@@ -1,8 +1,26 @@
-import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate, Outlet } from 'react-router-dom';
+import { supabase } from './supabaseClient';
+import { LogOut } from 'lucide-react';
 
 const Sidebar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const [userEmail, setUserEmail] = useState('');
+  
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) {
+        setUserEmail(user.email);
+      }
+    });
+  }, []);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    navigate('/login');
+  };
+
   const isActive = (path) => location.pathname === path;
 
   return (
@@ -41,11 +59,20 @@ const Sidebar = () => {
           <span className="font-label-caps text-label-caps uppercase">Search</span>
         </Link>
       </nav>
-      <div className="p-md editorial-divider border-t border-primary">
+      <div className="p-md editorial-divider border-t border-primary flex flex-col gap-4">
         <div className="flex items-center gap-sm">
-          <img alt="User profile" className="w-[32px] h-[32px] rounded-full grayscale border border-primary object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC_l_WRNy843qESIP5s5FTnsbw7nQJODxNRiLZqss6pYzvv1CKx4HcXNmD5RsFIG2bCa6pTrMBtdD8HKsHbWEx9aalh5i-zHczsSs2xcRszpWp2j5mhYApb_oatr0dZE_a2Os9Irm6l3b3E0-1Qv3LUN6jgkh25jzpJtT_75mvLD0ryapwx0qjUrsmJeBKQ9E24agQs5KNoyMXfQ_mqhHWNzPBuqQSbAQJWgxwgPt8icPOxqugMB6vcA" />
-          <span className="font-label-caps text-label-caps text-primary uppercase">Admin</span>
+          <img alt="User profile" className="w-[32px] h-[32px] rounded-full grayscale border border-primary object-cover" src="https://api.dicebear.com/7.x/avataaars/svg?seed=pulse" />
+          <span className="font-label-caps text-label-caps text-primary uppercase text-xs truncate max-w-[150px]">
+            {userEmail || 'Admin'}
+          </span>
         </div>
+        <button 
+          onClick={handleLogout}
+          className="flex items-center gap-2 text-sm text-red-500 hover:text-red-400 transition-colors uppercase font-bold tracking-wider"
+        >
+          <LogOut className="w-4 h-4" />
+          Secure Logout
+        </button>
       </div>
     </aside>
   );
@@ -71,13 +98,13 @@ const TopBar = () => (
   </header>
 );
 
-const Layout = ({ children }) => {
+const Layout = () => {
   return (
     <div className="bg-background text-on-background font-body-md text-body-md antialiased overflow-x-hidden min-h-screen flex">
       <Sidebar />
       <main className="flex-1 md:ml-64 flex flex-col min-h-screen">
         <TopBar />
-        {children}
+        <Outlet />
       </main>
     </div>
   );
