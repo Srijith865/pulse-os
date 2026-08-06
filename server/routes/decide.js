@@ -76,15 +76,7 @@ router.post('/evaluate', async (req, res) => {
         throw new Error("Invalid format");
       }
     } catch (err) {
-      console.error("Gemini failed in Decide. Using Presentation Fallback Mode.");
-      res.json({
-        success: true,
-        analysis: "Based on the parameters provided, proceeding with the initiative offers strategic advantages despite minor risks. The data aligns with Q3 OKRs.",
-        decision: "PROCEED",
-        confidence: 85,
-        risk_factors: ["Market volatility", "Resource constraints"],
-        next_steps: ["Allocate budget", "Assign lead engineer"]
-      });
+      throw err;
     }
 
   } catch (error) {

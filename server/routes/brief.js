@@ -212,22 +212,7 @@ router.get('/generate', async (req, res) => {
           await new Promise(resolve => setTimeout(resolve, 3000));
           retries--;
         } else {
-          console.error("All Gemini retries failed. Using Presentation Fallback Mode.");
-          return res.json({
-            success: true,
-            data: {
-              "synthesis": [
-                { "channel": "Executive Summary", "title": "Cross-Platform Overview", "summary": "All systems nominal. Marketing launch is scheduled for Q3. Engineering velocity is stable.", "tags": ["status: green", "launch"] },
-                { "channel": "Gmail", "title": "Email Operations", "summary": "Client contracts have been reviewed and approved. Investor updates are pending your final signature.", "tags": ["contracts", "investors"] },
-                { "channel": "Slack", "title": "Communications", "summary": "Design team requested feedback on the new landing page. DevOps resolved the latency issue.", "tags": ["design", "ops"] },
-                { "channel": "GitHub", "title": "Engineering Velocity", "summary": "3 PRs merged this morning. Database migration is currently in progress.", "tags": ["merged", "database"] },
-                { "channel": "Calendar", "title": "Schedule Impact", "summary": "All-hands meeting at 2 PM. Blocked out focus time from 3 PM to 5 PM.", "tags": ["all-hands", "focus"] }
-              ],
-              "urgent_actions": [ "Review design mocks in Slack", "Approve investor email draft" ],
-              "schedule": [ "2:00 PM - All Hands", "Conflicts: None" ],
-              "engineering": [ "PR: Optimize DB Queries", "Issue: Update SSL Certs" ]
-            }
-          });
+          throw err; // Throw if it's not a 503 or we ran out of retries
         }
       }
     }

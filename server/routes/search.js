@@ -97,20 +97,7 @@ router.get('/query', async (req, res) => {
         throw new Error("Invalid format");
       }
     } catch (err) {
-      console.error("Gemini failed in Search. Using Presentation Fallback Mode.");
-      res.json({
-        success: true,
-        nodes: [
-          { id: "1", label: "Query Results", type: "concept" },
-          { id: "2", label: "Database Migration", type: "task" },
-          { id: "3", label: "Q3 OKRs", type: "milestone" }
-        ],
-        edges: [
-          { source: "1", target: "2", label: "requires" },
-          { source: "2", target: "3", label: "blocks" }
-        ],
-        summary: "Search completed successfully (Fallback Mode). The results show a high correlation between the database migration tasks and the overall Q3 OKR objectives."
-      });
+      throw err;
     }
 
   } catch (error) {

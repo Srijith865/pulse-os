@@ -106,23 +106,15 @@ router.post('/upload', upload.single('file'), async (req, res) => {
         throw new Error("Invalid format");
       }
     } catch (err) {
-      console.error("Gemini failed in Docs. Using Presentation Fallback Mode.");
-      res.json({
-        success: true,
-        summary: "This is a fallback summary of the document. The document outlines standard operating procedures and strategic milestones.",
-        key_points: ["Operational readiness", "Milestone tracking", "Resource allocation"],
-        entities: ["Project Alpha", "Q3 Launch"]
-      });
+      throw err;
     }
 
     // Clean up temporary file
     fs.unlinkSync(filePath);
 
-    res.json({ success: true, document: data });
-
   } catch (error) {
-    console.error('Error processing document:', error);
-    res.status(500).json({ error: error.message || 'Failed to process document' });
+    console.error('Error analyzing document:', error);
+    res.status(500).json({ error: error.message || 'Failed to analyze document' });
   }
 });
 
