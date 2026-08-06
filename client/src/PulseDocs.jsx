@@ -68,7 +68,7 @@ const PulseDocs = () => {
             <button 
               onClick={() => fileInputRef.current?.click()} 
               disabled={uploading}
-              className="press-feedback text-xs bg-black dark:bg-white text-white dark:text-black px-4 py-1.5 rounded-md font-label-caps hover:opacity-90 transition-opacity disabled:opacity-50 shadow-sm"
+              className="press-feedback text-xs bg-primary text-on-primary px-4 py-2 rounded-xl font-label-caps hover:bg-indigo-600 transition-colors disabled:opacity-50 glow-sm"
             >
               {uploading ? 'ANALYZING...' : '+ UPLOAD MEDIA'}
             </button>
@@ -83,7 +83,7 @@ const PulseDocs = () => {
         
         {error && <div className="text-error text-xs font-bold p-2 bg-error-container">{error}</div>}
         
-        <div className="flex flex-col linear-surface h-[calc(100vh-250px)] overflow-y-auto stagger-children">
+        <div className="flex flex-col glass-card rounded-2xl h-[calc(100vh-250px)] overflow-y-auto p-2 gap-2 stagger-children">
           {loading && <div className="p-4 text-center font-label-caps text-secondary">Loading Database...</div>}
           
           {documents.length === 0 && !loading && (
@@ -96,10 +96,10 @@ const PulseDocs = () => {
               <div 
                 key={doc.id}
                 onClick={() => setActiveDoc(doc)}
-                className={`p-3 border-b border-black/10 dark:border-white/10 last:border-0 cursor-pointer transition-colors relative enter-fade-up ${
+                className={`p-sm rounded-xl cursor-pointer transition-colors relative overflow-hidden enter-fade-up ${
                   isActive 
-                    ? 'bg-black/5 dark:bg-white/10 text-black dark:text-white' 
-                    : 'bg-transparent hover:bg-black/5 dark:hover:bg-white/5 text-secondary dark:text-secondary-fixed'
+                    ? 'bg-primary text-on-primary shadow-md glow-sm' 
+                    : 'bg-white/40 hover:bg-white/80 text-primary border border-black/5 hover-lift'
                 }`}
               >
                 {isActive && <div className="absolute inset-0 bg-white/10 pointer-events-none"></div>}
@@ -129,27 +129,29 @@ const PulseDocs = () => {
             
             {/* Summary Panel */}
             {activeDoc.entities.summary && (
-              <div className="bg-black/5 dark:bg-white/5 p-4 rounded-sm relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-black dark:bg-white"></div>
-                <h2 className="font-[Inter] text-xs font-semibold text-black dark:text-white uppercase tracking-widest mb-2 flex items-center gap-2">
+              <div className="glass-card rounded-3xl p-lg relative overflow-hidden enter-fade-up">
+                <div className="absolute top-0 left-0 w-2 h-full bg-indigo-400"></div>
+                <h2 className="font-label-caps text-label-caps text-primary mb-xs flex items-center gap-2">
                   <span className="material-symbols-outlined text-[16px]">subject</span>
                   Executive Summary
                 </h2>
-                <p className="font-body-md text-sm text-black dark:text-white leading-relaxed">{activeDoc.entities.summary}</p>
+                <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                  {activeDoc.entities.summary}
+                </p>
               </div>
             )}
 
             {/* Suggestions Panel */}
             {activeDoc.entities.suggestions && activeDoc.entities.suggestions.length > 0 && (
-              <div className="linear-surface p-6 enter-fade-up" style={{ animationDelay: '100ms' }}>
-                <h2 className="font-[Inter] text-xs font-semibold text-black dark:text-white uppercase tracking-widest mb-4 flex items-center gap-2">
+              <div className="glass-card rounded-3xl p-lg enter-fade-up" style={{ animationDelay: '100ms' }}>
+                <h2 className="font-label-caps text-label-caps text-primary mb-sm flex items-center gap-2">
                   <span className="material-symbols-outlined text-[16px]">lightbulb</span>
                   Strategic Suggestions
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-sm">
                   {activeDoc.entities.suggestions.map((suggestion, idx) => (
-                    <div key={idx} className="bg-transparent border border-black/10 dark:border-white/10 rounded-md p-3 flex items-start gap-2 hover:border-black/30 dark:hover:border-white/30 transition-colors cursor-default hover-lift">
-                      <span className="font-[JetBrains_Mono] text-black dark:text-white bg-black/5 dark:bg-white/10 px-1.5 py-0.5 text-[10px] rounded">
+                    <div key={idx} className="bg-white/60 border border-black/5 rounded-2xl p-sm flex items-start gap-2 hover:bg-white hover:border-indigo-200 transition-colors cursor-default hover-lift">
+                      <span className="font-label-caps text-primary bg-indigo-100 px-2 py-0.5 mt-0.5 text-[10px] rounded-full">
                         0{idx + 1}
                       </span>
                       <p className="font-body-md text-sm text-primary">
@@ -165,13 +167,13 @@ const PulseDocs = () => {
         )}
 
         <div className="enter-fade-up" style={{ animationDelay: '200ms' }}>
-          <div className="flex items-center justify-between border-b border-black/10 dark:border-white/10 pb-2 mb-4">
-            <h2 className="font-[Inter] text-xs font-semibold text-black dark:text-white uppercase tracking-widest flex items-center gap-2">
+          <div className="flex items-center justify-between border-b border-black/10 pb-xs mb-md">
+            <h2 className="font-label-caps text-label-caps text-primary flex items-center gap-2">
               <span className="material-symbols-outlined text-[16px]">data_object</span>
-              Raw Entities: <span className="text-secondary dark:text-secondary-fixed">{activeDoc ? activeDoc.file_name : 'No Document Selected'}</span>
+              Raw Entities: <span className="text-secondary">{activeDoc ? activeDoc.file_name : 'No Document Selected'}</span>
             </h2>
           </div>
-          <div className="linear-surface overflow-hidden min-h-[200px]">
+          <div className="glass-card rounded-3xl overflow-hidden min-h-[200px]">
             {activeDoc ? (
               <table className="w-full text-left border-collapse">
                 <thead>
@@ -184,9 +186,9 @@ const PulseDocs = () => {
                 <tbody className="font-body-md text-body-md text-on-surface">
                   {activeDoc.entities?.entities?.length > 0 ? (
                     activeDoc.entities.entities.map((entity, i) => (
-                      <tr key={i} className="border-b border-black/5 dark:border-white/5 hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-black dark:text-white">
-                        <td className="p-3">
-                          <span className={`px-2 py-0.5 rounded text-[10px] font-label-caps uppercase ${entity.type === 'Critical' ? 'bg-black text-white dark:bg-white dark:text-black' : 'bg-black/5 dark:bg-white/10 text-secondary dark:text-secondary-fixed'}`}>
+                      <tr key={i} className="border-b border-black/5 hover:bg-white/40 transition-colors">
+                        <td className="p-sm">
+                          <span className={`px-3 py-1 rounded-full text-xs font-label-caps uppercase ${entity.type === 'Critical' ? 'bg-primary text-on-primary' : 'bg-black/5 text-primary'}`}>
                             {entity.type}
                           </span>
                         </td>
@@ -211,15 +213,16 @@ const PulseDocs = () => {
 
         {/* Knowledge Topology (Visualization Area) */}
         <div className="flex-grow flex flex-col enter-fade-up" style={{ animationDelay: '300ms' }}>
-          <div className="flex items-center justify-between border-b border-black/10 dark:border-white/10 pb-2 mb-4">
-            <h2 className="font-[Inter] text-xs font-semibold text-black dark:text-white uppercase tracking-widest">Knowledge Topology</h2>
+          <div className="flex items-center justify-between border-b border-black/10 pb-xs mb-md">
+            <h2 className="font-label-caps text-label-caps text-primary">Knowledge Topology</h2>
           </div>
-          <div className="flex-grow bg-[#F4F5F8] dark:bg-[#111111] rounded border border-black/5 dark:border-white/5 relative overflow-hidden min-h-[400px]">
+          <div className="flex-grow glass-card rounded-3xl relative overflow-hidden min-h-[400px]">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-50 via-transparent to-transparent opacity-50"></div>
             <div className="absolute inset-0" style={{ backgroundImage: "linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px)", backgroundSize: "40px 40px" }}></div>
             
             {activeDoc && (
               <>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-32 px-4 h-10 bg-black dark:bg-white text-white dark:text-black rounded-md flex items-center justify-center font-label-caps text-[10px] z-10 shadow-sm text-center line-clamp-1">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-32 px-4 h-12 bg-primary text-on-primary rounded-full flex items-center justify-center font-label-caps text-xs z-10 shadow-lg text-center line-clamp-1 glow-sm">
                     {activeDoc.file_name.substring(0, 15)}...
                 </div>
                 
@@ -230,7 +233,7 @@ const PulseDocs = () => {
                 </svg>
                 
                 {activeDoc.entities?.entities?.map((ent, i) => (
-                  <div key={i} className="absolute linear-surface bg-white dark:bg-[#1A1B22] px-3 py-1.5 font-label-caps text-[10px] text-black dark:text-white shadow-sm hover:border-black/30 dark:hover:border-white/30 transition-colors cursor-pointer max-w-[150px] truncate hover-lift enter-scale"
+                  <div key={i} className="absolute glass-card bg-white/80 rounded-xl px-4 py-2 font-label-caps text-xs text-primary shadow-md hover:bg-white transition-colors cursor-pointer max-w-[150px] truncate hover-lift enter-scale"
                     style={{
                       top: `${30 + (i % 2 === 0 ? 50 : 0)}%`,
                       left: `${20 + (i * 15)}%`,

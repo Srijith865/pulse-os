@@ -41,10 +41,10 @@ const PulseSearch = () => {
       if (node.type === 'slack') bgColor = 'bg-[#4A154B] text-white';
       
       return (
-        <div key={node.id} className={`absolute linear-surface px-2 py-1 text-[10px] font-label-caps max-w-[120px] text-center hover-lift enter-scale ${bgColor}`}
+        <div key={node.id} className={`absolute glass-card px-3 py-2 text-[10px] font-label-caps rounded-xl shadow-md ${bgColor} max-w-[120px] text-center hover-lift enter-scale`}
           style={{ top: y, left: x, transform: 'translate(-50%, -50%)', animationDelay: `${i * 50}ms` }}
         >
-          <strong className="block mb-1 opacity-70">{node.type.toUpperCase()}</strong>
+          <strong className="block mb-1">{node.type.toUpperCase()}</strong>
           {node.label}
         </div>
       );
@@ -53,26 +53,26 @@ const PulseSearch = () => {
 
   return (
     <div className="p-margin-mobile md:p-margin-desktop flex-1 flex flex-col gap-lg max-w-[1440px] mx-auto w-full">
-      <div className="border-b border-black/10 dark:border-white/10 pb-md mb-md">
-        <h2 className="font-headline-md text-headline-md text-black dark:text-white font-medium">Global Knowledge Search</h2>
-        <p className="font-body-md text-body-md text-secondary dark:text-secondary-fixed mt-1 max-w-2xl">Query the neural net across all integrated subsystems (Docs, GitHub, Slack, Calendar).</p>
+      <div className="border-b border-black/10 pb-md mb-md">
+        <h2 className="font-display text-display text-primary">Global Knowledge Search</h2>
+        <p className="font-body-lg text-body-lg text-secondary mt-xs max-w-2xl">Query the neural net across all integrated subsystems (Docs, GitHub, Slack, Calendar).</p>
       </div>
 
-      <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-2 mb-lg relative">
-        <div className="flex-1 flex items-center linear-surface px-4 py-3 hover:bg-black/5 dark:hover:bg-white/5 transition-colors focus-within:ring-1 focus-within:ring-black dark:focus-within:ring-white">
-          <span className="material-symbols-outlined text-secondary dark:text-secondary-fixed mr-3 text-[20px]">search</span>
+      <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-4 mb-lg relative">
+        <div className="flex-1 flex items-center glass-card rounded-2xl px-4 py-2 hover:bg-white/60 transition-colors focus-within:ring-2 focus-within:ring-indigo-200">
+          <span className="material-symbols-outlined text-secondary mr-2">search</span>
           <input 
             type="text" 
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="e.g., 'Project Phoenix status'"
-            className="flex-1 bg-transparent text-sm font-body-md text-black dark:text-white focus:outline-none placeholder-secondary dark:placeholder-secondary-fixed"
+            className="flex-1 bg-transparent text-headline-md font-headline-md focus:outline-none p-2 placeholder-secondary"
           />
         </div>
         <button 
           type="submit" 
           disabled={loading || !query}
-          className="press-feedback bg-black dark:bg-white text-white dark:text-black font-label-caps text-label-caps px-6 py-3 rounded-md hover:opacity-90 transition-opacity disabled:opacity-50 text-xs whitespace-nowrap shadow-sm"
+          className="press-feedback bg-primary text-on-primary font-label-caps text-label-caps px-xl py-4 md:py-sm rounded-2xl hover:bg-indigo-600 transition-colors disabled:opacity-50 glow-sm whitespace-nowrap"
         >
           {loading ? 'SEARCHING...' : 'INITIALIZE QUERY'}
         </button>
@@ -85,19 +85,19 @@ const PulseSearch = () => {
       )}
 
       {graphData && (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 linear-surface p-6 enter-fade-up">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-lg glass-card rounded-3xl p-md md:p-lg enter-fade-up">
           {/* Left Column: Narrative Synthesis */}
-          <div className="flex flex-col gap-4 border-r border-black/10 dark:border-white/10 pr-6">
-            <h3 className="font-[Inter] text-xs font-semibold text-black dark:text-white uppercase tracking-widest">Cross-Platform Synthesis</h3>
-            <div className="font-body-md text-sm text-black dark:text-white whitespace-pre-wrap flex-1 leading-relaxed">
+          <div className="flex flex-col gap-md border-r border-black/10 pr-md">
+            <h3 className="font-headline-lg text-headline-lg text-primary">Cross-Platform Synthesis</h3>
+            <div className="font-body-lg text-body-lg text-on-surface whitespace-pre-wrap flex-1">
               {graphData.narrative_summary}
             </div>
           </div>
 
           {/* Right Column: Node Graph Visualization */}
-          <div className="relative min-h-[300px] flex items-center justify-center bg-[#F4F5F8] dark:bg-[#111111] rounded border border-black/5 dark:border-white/5 p-4">
+          <div className="relative min-h-[300px] flex items-center justify-center bg-white/40 rounded-2xl overflow-hidden border border-black/5 p-4 shadow-inner">
             {/* Background Grid */}
-            <div className="absolute inset-0 opacity-10" style={{ backgroundImage: "linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)", backgroundSize: "20px 20px" }}></div>
+            <div className="absolute inset-0 opacity-[0.05]" style={{ backgroundImage: "linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)", backgroundSize: "20px 20px" }}></div>
             
             <div className="relative w-[300px] h-[300px]">
               {/* Draw Edges */}
@@ -118,8 +118,8 @@ const PulseSearch = () => {
                    
                    return (
                      <g key={idx}>
-                       <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="currentColor" strokeWidth="1" strokeDasharray="4 4" className="enter-fade-up text-black/20 dark:text-white/20" style={{ animationDelay: '300ms' }} />
-                       <text x={(x1+x2)/2} y={(y1+y2)/2} fill="currentColor" fontSize="10" className="font-label-caps enter-fade-up text-black/50 dark:text-white/50" style={{ animationDelay: '400ms', backgroundColor: 'transparent' }}>
+                       <line x1={x1} y1={y1} x2={x2} y2={y2} stroke="rgba(0,0,0,0.15)" strokeWidth="1.5" strokeDasharray="4 4" className="enter-fade-up" style={{ animationDelay: '300ms' }} />
+                       <text x={(x1+x2)/2} y={(y1+y2)/2} fill="#000" fontSize="10" className="font-label-caps enter-fade-up" style={{ animationDelay: '400ms', backgroundColor: 'transparent' }}>
                          {edge.relationship}
                        </text>
                      </g>

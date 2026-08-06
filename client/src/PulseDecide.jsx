@@ -93,29 +93,30 @@ const PulseDecide = () => {
     <div className="p-margin-mobile md:p-margin-desktop flex-1 flex flex-col gap-lg max-w-[1440px] mx-auto w-full">
       {/* Page Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-md border-b border-primary pb-md">
-        <div className="border-b border-black/10 dark:border-white/10 pb-md mb-md">
-          <h2 className="font-headline-md text-headline-md text-black dark:text-white font-medium">Strategic Decision Engine</h2>
-          <p className="font-body-md text-body-md text-secondary dark:text-secondary-fixed mt-1">Input options and evaluation criteria. The system will synthesize a recommended protocol.</p>
+        <div>
+          <h2 className="font-display text-display text-primary">Strategic Decision Engine</h2>
+          <p className="font-body-lg text-body-lg text-secondary mt-xs max-w-2xl">Input options and evaluation criteria. The system will synthesize a recommended protocol.</p>
         </div>
-        <div className="font-[JetBrains_Mono] text-[10px] text-secondary dark:text-secondary-fixed border border-black/10 dark:border-white/10 px-2 py-1 bg-black/5 dark:bg-white/5 rounded">
+        <div className="font-label-caps text-label-caps text-primary border border-primary/20 px-sm py-xs bg-white/60 rounded-xl backdrop-blur-sm">
           ID: DEC-2023-094
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 linear-surface p-4">
+      {/* Input Section */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-md border border-black/5 bg-white/40 p-md glass-card rounded-3xl">
         <div>
-          <label className="font-[Inter] text-xs font-semibold text-black dark:text-white block mb-2 uppercase tracking-widest">Options</label>
+          <label className="font-label-caps text-label-caps font-bold block mb-xs">Options (One per line)</label>
           <textarea 
-            className="w-full border border-black/10 dark:border-white/10 p-3 font-[JetBrains_Mono] text-xs bg-transparent rounded-md focus:outline-none focus:border-black dark:focus:border-white transition-colors h-32 text-black dark:text-white"
+            className="w-full border border-black/10 p-sm font-body-md bg-white/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400 transition-all h-32"
             value={optionsText}
             onChange={(e) => setOptionsText(e.target.value)}
             placeholder="Option A&#10;Option B"
           />
         </div>
         <div>
-          <label className="font-[Inter] text-xs font-semibold text-black dark:text-white block mb-2 uppercase tracking-widest">Criteria</label>
+          <label className="font-label-caps text-label-caps font-bold block mb-xs">Criteria (One per line)</label>
           <textarea 
-            className="w-full border border-black/10 dark:border-white/10 p-3 font-[JetBrains_Mono] text-xs bg-transparent rounded-md focus:outline-none focus:border-black dark:focus:border-white transition-colors h-32 text-black dark:text-white"
+            className="w-full border border-black/10 p-sm font-body-md bg-white/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400 transition-all h-32"
             value={criteriaText}
             onChange={(e) => setCriteriaText(e.target.value)}
             placeholder="Criteria 1&#10;Criteria 2"
@@ -126,7 +127,7 @@ const PulseDecide = () => {
           <button 
             onClick={handleEvaluate} 
             disabled={loading}
-            className="press-feedback bg-black dark:bg-white text-white dark:text-black font-label-caps text-label-caps px-4 py-1.5 rounded-md hover:opacity-90 transition-opacity disabled:opacity-50 text-xs"
+            className="press-feedback bg-primary text-on-primary font-label-caps text-label-caps px-lg py-sm rounded-xl hover:bg-indigo-600 transition-colors disabled:opacity-50 glow-sm"
           >
             {loading ? 'EVALUATING...' : 'EXECUTE ANALYSIS'}
           </button>
@@ -137,11 +138,11 @@ const PulseDecide = () => {
       <div className={`grid grid-cols-1 lg:grid-cols-12 gap-md transition-opacity duration-500 ${decideData ? 'opacity-100' : 'opacity-30 pointer-events-none'}`}>
         
         {/* Main AI Recommendation Block (Spans 8 cols) */}
-        <section className="lg:col-span-8 linear-surface p-4 flex flex-col">
-          <div className="flex justify-between items-center border-b border-black/10 dark:border-white/10 pb-3 mb-4">
-            <div className="flex items-center gap-2">
-              <span className="material-symbols-outlined text-[16px] text-black dark:text-white">smart_toy</span>
-              <h3 className="font-[Inter] text-xs font-semibold text-black dark:text-white uppercase tracking-widest">Primary Recommendation</h3>
+        <section className="lg:col-span-8 p-lg glass-card rounded-3xl flex flex-col">
+          <div className="flex justify-between items-center border-b border-black/10 pb-sm mb-md">
+            <div className="flex items-center gap-xs">
+              <span className="material-symbols-outlined text-primary">smart_toy</span>
+              <h3 className="font-label-caps text-label-caps font-bold">Primary Recommendation</h3>
             </div>
             <span className="font-label-caps text-label-caps bg-primary text-on-primary px-xs py-base">
               {decideData?.primary_recommendation?.match_percentage || '0'}% MATCH
@@ -175,24 +176,25 @@ const PulseDecide = () => {
             </div>
           )}
 
-          <div className="mt-6 pt-4 border-t border-black/10 dark:border-white/10 flex flex-col sm:flex-row gap-3">
+          <div className="flex flex-col sm:flex-row gap-sm items-center mt-auto pt-md border-t border-gray-200">
             <button 
               onClick={handleExecute}
               disabled={executing || !decideData?.execution_plan}
-              className="press-feedback bg-black dark:bg-white text-white dark:text-black font-label-caps text-label-caps px-4 py-1.5 rounded-md hover:opacity-90 transition-opacity disabled:opacity-50 text-xs w-full sm:w-auto"
+              className="press-feedback w-full sm:w-auto bg-primary text-on-primary font-label-caps text-label-caps px-lg py-sm rounded-xl hover:bg-indigo-600 transition-colors disabled:opacity-50 glow-sm"
             >
               {executing ? 'EXECUTING...' : 'EXECUTE NOW'}
             </button>
-            <button className="press-feedback bg-transparent text-black dark:text-white border border-black/10 dark:border-white/10 font-label-caps text-label-caps px-4 py-1.5 rounded-md hover:bg-black/5 dark:hover:bg-white/5 transition-colors text-xs w-full sm:w-auto">
+            <button className="press-feedback w-full sm:w-auto bg-white/60 text-primary font-label-caps text-label-caps px-lg py-sm border border-black/10 rounded-xl hover:bg-white transition-colors">
               DEFER TO BOARD
             </button>
           </div>
         </section>
         
-        <section className="lg:col-span-4 linear-surface p-4 flex flex-col">
-          <div className="flex items-center gap-2 border-b border-black/10 dark:border-white/10 pb-3 mb-4">
-            <span className="material-symbols-outlined text-[16px] text-black dark:text-white">radar</span>
-            <h3 className="font-[Inter] text-xs font-semibold text-black dark:text-white uppercase tracking-widest">Risk Radar</h3>
+        {/* Risk Radar Chart (Spans 4 cols) */}
+        <section className="lg:col-span-4 p-md glass-card rounded-3xl flex flex-col">
+          <div className="flex items-center gap-xs border-b border-black/10 pb-sm mb-md">
+            <span className="material-symbols-outlined text-primary">radar</span>
+            <h3 className="font-label-caps text-label-caps font-bold">Risk Radar</h3>
           </div>
           <div className="flex-1 flex justify-center items-center py-md relative">
             <svg className="w-full max-w-[250px] h-auto" viewBox="0 0 200 200">
@@ -238,16 +240,16 @@ const PulseDecide = () => {
         
         {/* Dynamic Alternatives */}
         {decideData?.alternatives?.map((alt, idx) => (
-          <section key={idx} className="lg:col-span-6 linear-surface p-4 flex flex-col group transition-colors relative">
+          <section key={idx} className="lg:col-span-6 p-lg glass-card rounded-3xl hover:bg-white/60 transition-colors group cursor-pointer relative overflow-hidden hover-lift enter-fade-up" style={{ animationDelay: `${idx * 100}ms` }}>
             <div className="relative z-10">
               <div className="flex justify-between items-start mb-sm">
                 <span className="font-label-caps text-label-caps border border-primary px-xs py-base group-hover:bg-primary group-hover:text-on-primary transition-colors">ALT-{String.fromCharCode(65 + idx)}</span>
                 <span className="font-label-caps text-label-caps text-secondary">{alt.match_percentage}% MATCH</span>
               </div>
               <h4 className="font-headline-md text-headline-md mb-xs">{alt.title}</h4>
-              <div className="flex-1 font-body-md text-sm text-black dark:text-white whitespace-pre-wrap leading-relaxed">
+              <p className="font-body-md text-body-md text-secondary mb-md">
                 {alt.description}
-              </div>
+              </p>
               <div className="border-t border-primary pt-sm mt-auto">
                 <div className="flex justify-between items-center mb-xs">
                   <span className="font-label-caps text-label-caps text-secondary">EST. COST</span>

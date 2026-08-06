@@ -28,10 +28,10 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="hidden md:flex flex-col fixed left-0 top-0 h-full w-64 z-50 bg-white dark:bg-[#1A1B22] border-r border-black/10 dark:border-white/10 transition-colors">
-      <div className="p-lg border-b border-black/10 dark:border-white/10">
-        <h1 className="font-headline-md text-headline-md font-semibold text-black dark:text-white">Pulse OS</h1>
-        <p className="font-label-caps text-label-caps text-secondary dark:text-secondary-fixed mt-xs">System Intelligence</p>
+    <aside className="hidden md:flex flex-col fixed left-0 top-0 h-full w-64 z-50 glass-card" style={{ borderTop: 'none', borderBottom: 'none', borderLeft: 'none' }}>
+      <div className="p-lg border-b border-black/5">
+        <h1 className="font-headline-md text-headline-md font-bold text-primary">Pulse OS</h1>
+        <p className="font-label-caps text-label-caps text-on-surface-variant mt-xs">System Intelligence</p>
       </div>
 
       <nav className="flex-1 py-md flex flex-col gap-xs px-sm">
@@ -39,10 +39,10 @@ const Sidebar = () => {
           <Link
             key={item.path}
             to={item.path}
-            className={`flex items-center gap-sm px-3 py-1.5 rounded-md transition-all duration-200 press-feedback ${
+            className={`flex items-center gap-sm px-sm py-2.5 rounded-xl transition-all duration-200 press-feedback ${
               isActive(item.path)
-                ? 'bg-black/5 dark:bg-white/10 text-black dark:text-white font-medium'
-                : 'text-secondary dark:text-secondary-fixed hover:bg-black/5 dark:hover:bg-white/5'
+                ? 'bg-primary text-on-primary shadow-md glow-sm'
+                : 'text-primary hover:bg-white/60'
             }`}
           >
             <span
@@ -56,12 +56,12 @@ const Sidebar = () => {
         ))}
       </nav>
 
-      <div className="p-md border-t border-black/10 dark:border-white/10 flex flex-col gap-3">
+      <div className="p-md border-t border-black/5 flex flex-col gap-3">
         <div className="flex items-center gap-sm">
           <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-500 flex items-center justify-center text-white text-xs font-bold">
             {userEmail ? userEmail.charAt(0).toUpperCase() : 'A'}
           </div>
-          <span className="font-label-caps text-label-caps text-black dark:text-white text-xs truncate max-w-[150px]">
+          <span className="font-label-caps text-label-caps text-primary uppercase text-xs truncate max-w-[150px]">
             {userEmail || 'Admin'}
           </span>
         </div>
@@ -77,23 +77,20 @@ const Sidebar = () => {
   );
 };
 
-const TopBar = ({ toggleTheme, isDark }) => (
-  <header className="w-full bg-white dark:bg-[#1A1B22] flex justify-between items-center px-lg py-sm sticky top-0 z-40 border-b border-black/10 dark:border-white/10 transition-colors">
-    <h2 className="font-headline-md text-headline-md font-semibold text-black dark:text-white">System Console</h2>
+const TopBar = () => (
+  <header className="w-full glass-card flex justify-between items-center px-lg py-sm sticky top-0 z-40" style={{ borderTop: 'none', borderLeft: 'none', borderRight: 'none' }}>
+    <h2 className="font-headline-md text-headline-md font-bold text-primary">System Console</h2>
     <div className="flex items-center gap-md">
       <div className="hidden lg:flex items-center bg-white/60 border border-black/10 rounded-xl px-sm py-1">
         <span className="material-symbols-outlined text-secondary mr-xs text-[18px]">search</span>
         <input className="bg-transparent border-none outline-none font-label-caps text-label-caps text-primary placeholder-on-surface-variant focus:ring-0 p-0 w-52" placeholder="Search..." type="text" />
       </div>
       <div className="flex gap-xs">
-        <button onClick={toggleTheme} className="press-feedback text-secondary dark:text-secondary-fixed hover:bg-black/5 dark:hover:bg-white/10 p-1.5 rounded-md transition-colors cursor-pointer">
-          <span className="material-symbols-outlined text-[18px]">{isDark ? 'light_mode' : 'dark_mode'}</span>
+        <button className="press-feedback text-primary hover:bg-white/60 p-xs rounded-xl transition-colors cursor-pointer">
+          <span className="material-symbols-outlined text-[20px]">notifications</span>
         </button>
-        <button className="press-feedback text-secondary dark:text-secondary-fixed hover:bg-black/5 dark:hover:bg-white/10 p-1.5 rounded-md transition-colors cursor-pointer">
-          <span className="material-symbols-outlined text-[18px]">notifications</span>
-        </button>
-        <button className="press-feedback text-secondary dark:text-secondary-fixed hover:bg-black/5 dark:hover:bg-white/10 p-1.5 rounded-md transition-colors cursor-pointer">
-          <span className="material-symbols-outlined text-[18px]">settings</span>
+        <button className="press-feedback text-primary hover:bg-white/60 p-xs rounded-xl transition-colors cursor-pointer">
+          <span className="material-symbols-outlined text-[20px]">settings</span>
         </button>
       </div>
     </div>
@@ -101,21 +98,11 @@ const TopBar = ({ toggleTheme, isDark }) => (
 );
 
 const Layout = () => {
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [isDark]);
-
   return (
-    <div className="text-on-background dark:text-white font-body-md text-body-md antialiased overflow-x-hidden min-h-screen flex bg-[#F4F5F8] dark:bg-[#111111] transition-colors">
+    <div className="text-on-background font-body-md text-body-md antialiased overflow-x-hidden min-h-screen flex dot-grid">
       <Sidebar />
       <main className="flex-1 md:ml-64 flex flex-col min-h-screen">
-        <TopBar toggleTheme={() => setIsDark(!isDark)} isDark={isDark} />
+        <TopBar />
         <Outlet />
       </main>
     </div>
