@@ -199,7 +199,7 @@ router.get('/generate', async (req, res) => {
     `;
 
     // Generate brief using Gemini
-    const model = ai.getGenerativeModel({ model: "gemini-2.0-flash" });
+    const model = ai.getGenerativeModel({ model: "gemini-pro-latest" });
     const aiResponse = await model.generateContent(prompt);
     
     // Parse the JSON block from the response
