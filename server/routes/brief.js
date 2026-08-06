@@ -198,9 +198,24 @@ router.get('/generate', async (req, res) => {
       }
     `;
 
-    // Generate brief using Gemini
-    const model = ai.getGenerativeModel({ model: "gemini-pro-latest" });
-    const aiResponse = await model.generateContent(prompt);
+    // Generate brief using Gemini with retry logic for 503 errors
+    const model = ai.getGenerativeModel({ model: "gemini-3.6-flash" });
+    let aiResponse;
+    let retries = 3;
+    while (retries > 0) {
+      try {
+        aiResponse = await model.generateContent(prompt);
+        break; // Success, exit the retry loop
+      } catch (err) {
+        if (err.status === 503 && retries > 1) {
+          console.warn(`Gemini 503 error, retrying in 3 seconds... (${retries - 1} attempts left)`);
+          await new Promise(resolve => setTimeout(resolve, 3000));
+          retries--;
+        } else {
+          throw err; // Throw if it's not a 503 or we ran out of retries
+        }
+      }
+    }
     
     // Parse the JSON block from the response
     const text = aiResponse.response.text();
