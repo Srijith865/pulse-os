@@ -14,21 +14,18 @@ const ai = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 router.post('/evaluate', async (req, res) => {
   try {
-    const { options, criteria } = req.body;
+    const { context } = req.body;
     
-    if (!options || !criteria || !Array.isArray(options) || !Array.isArray(criteria)) {
-      return res.status(400).json({ error: 'Options and criteria must be provided as arrays.' });
+    if (!context || typeof context !== 'string') {
+      return res.status(400).json({ error: 'Please provide a valid decision context.' });
     }
 
     const prompt = `
       You are Pulse OS, an AI-powered enterprise operating system. 
-      You are tasked with a "Strategic Decision" protocol. Evaluate the following Options based on the Criteria.
+      You are tasked with a "Strategic Decision" protocol. Evaluate the following context and propose a decision.
       
-      Options:
-      ${options.join('\n')}
-      
-      Criteria:
-      ${criteria.join('\n')}
+      Context:
+      ${context}
       
       Format your response strictly as JSON with this exact structure:
       {
@@ -38,9 +35,9 @@ router.post('/evaluate', async (req, res) => {
           "justification": "Detailed explanation of why this was chosen."
         },
         "execution_plan": [
-          { "app": "github", "description": "Create issue for tracking", "payload": { "owner": "your_github_username_or_org", "repo": "pulse-os", "title": "Implement X", "body": "Details..." } },
-          { "app": "slack", "description": "Announce decision to team", "payload": { "channel": "#pulse-updates", "text": "We are proceeding with X..." } },
-          { "app": "calendar", "description": "Schedule a review meeting", "payload": { "summary": "Review X implementation", "duration_minutes": 60 } }
+          { "app": "github", "description": "Edit code in GitHub repository", "payload": { "owner": "Srijith865", "repo": "nocturne1", "path": "pulse-action-log.md", "message": "Update via Action Engine", "content": "Applied new strategic decision." } },
+          { "app": "slack", "description": "Notify team about code edit", "payload": { "channel": "#general", "text": "I have successfully edited the code in GitHub based on the strategic decision." } },
+          { "app": "calendar", "description": "Schedule a review meeting", "payload": { "summary": "Review updated code implementation", "duration_minutes": 60 } }
         ],
         "risk_radar": {
           "capital": 80,
@@ -103,17 +100,29 @@ router.post('/execute', async (req, res) => {
         }
         try {
           const payload = action.payload;
-          // Normally we'd POST to github, but since the repo might not exist, we just simulate or try to create it.
-          // For prototype, we will just hit the github API, if it 404s, we return that.
-          const resGh = await axios.post(`https://api.github.com/repos/${payload.owner}/${payload.repo}/issues`, {
-            title: payload.title,
-            body: payload.body
+          let sha;
+          try {
+            // Attempt to fetch the file to get its current SHA (needed for updates)
+            const fileRes = await axios.get(`https://api.github.com/repos/${payload.owner}/${payload.repo}/contents/${payload.path}`, {
+              headers: { Authorization: `Bearer ${process.env.GITHUB_PAT}`, Accept: 'application/vnd.github.v3+json' }
+            });
+            sha = fileRes.data.sha;
+          } catch (getFileErr) {
+            // File might not exist (404), which is fine for new files.
+          }
+          
+          const contentBase64 = Buffer.from(payload.content || '').toString('base64');
+          
+          const resGh = await axios.put(`https://api.github.com/repos/${payload.owner}/${payload.repo}/contents/${payload.path}`, {
+            message: payload.message || 'Automated code edit via Pulse OS',
+            content: contentBase64,
+            sha: sha
           }, {
             headers: { Authorization: `Bearer ${process.env.GITHUB_PAT}`, Accept: 'application/vnd.github.v3+json' }
           });
-          results.push({ app: 'github', status: 'success', data: resGh.data.html_url });
+          results.push({ app: 'github', status: 'success', data: resGh.data.content.html_url });
         } catch (e) {
-          results.push({ app: 'github', status: 'error', reason: e.message });
+          results.push({ app: 'github', status: 'error', reason: e.response?.data?.message || e.message });
         }
       }
 

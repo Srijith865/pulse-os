@@ -29,7 +29,7 @@ if (fs.existsSync(TOKEN_PATH)) {
 // Define the scopes required for reading emails AND calendar
 const SCOPES = [
   'https://www.googleapis.com/auth/gmail.readonly',
-  'https://www.googleapis.com/auth/calendar.readonly'
+  'https://www.googleapis.com/auth/calendar.events'
 ];
 
 // Initialize Gemini

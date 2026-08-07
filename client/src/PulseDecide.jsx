@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const PulseDecide = () => {
-  const [optionsText, setOptionsText] = useState('Maintain current operations\nAggressive restructuring of tier-1 suppliers');
-  const [criteriaText, setCriteriaText] = useState('Minimize capital outlay\nReduce risk of supply chain failure within 90 days');
+  const [decisionContext, setDecisionContext] = useState('We are considering whether to maintain current operations or aggressively restructure our tier-1 suppliers. Our main goals are to minimize capital outlay while reducing the risk of supply chain failure within the next 90 days.');
   
   const [loading, setLoading] = useState(false);
   const [executing, setExecuting] = useState(false);
@@ -32,19 +31,15 @@ const PulseDecide = () => {
     setLoading(true);
     setError(null);
     
-    const options = optionsText.split('\n').filter(o => o.trim());
-    const criteria = criteriaText.split('\n').filter(c => c.trim());
-
-    if (options.length < 2 || criteria.length < 1) {
-      setError("Please provide at least 2 options and 1 criteria.");
+    if (!decisionContext.trim()) {
+      setError("Please provide a decision context.");
       setLoading(false);
       return;
     }
 
     try {
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/decide/evaluate`, {
-        options,
-        criteria
+        context: decisionContext
       });
       setDecideData(response.data.data);
     } catch (err) {
@@ -95,7 +90,7 @@ const PulseDecide = () => {
       <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-md border-b border-primary pb-md">
         <div>
           <h2 className="font-display text-display text-primary">Strategic Decision Engine</h2>
-          <p className="font-body-lg text-body-lg text-secondary mt-xs max-w-2xl">Input options and evaluation criteria. The system will synthesize a recommended protocol.</p>
+          <p className="font-body-lg text-body-lg text-secondary mt-xs max-w-2xl">Provide the context of your strategic decision. The system will synthesize a recommended protocol and execution plan.</p>
         </div>
         <div className="font-label-caps text-label-caps text-primary border border-primary/20 px-sm py-xs bg-white/60 rounded-xl backdrop-blur-sm">
           ID: DEC-2023-094
@@ -103,26 +98,15 @@ const PulseDecide = () => {
       </div>
 
       {/* Input Section */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-md border border-black/5 bg-white/40 p-md glass-card rounded-3xl">
-        <div>
-          <label className="font-label-caps text-label-caps font-bold block mb-xs">Options (One per line)</label>
-          <textarea 
-            className="w-full border border-black/10 p-sm font-body-md bg-white/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400 transition-all h-32"
-            value={optionsText}
-            onChange={(e) => setOptionsText(e.target.value)}
-            placeholder="Option A&#10;Option B"
-          />
-        </div>
-        <div>
-          <label className="font-label-caps text-label-caps font-bold block mb-xs">Criteria (One per line)</label>
-          <textarea 
-            className="w-full border border-black/10 p-sm font-body-md bg-white/60 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400 transition-all h-32"
-            value={criteriaText}
-            onChange={(e) => setCriteriaText(e.target.value)}
-            placeholder="Criteria 1&#10;Criteria 2"
-          />
-        </div>
-        <div className="md:col-span-2 flex justify-between items-center mt-2">
+      <div className="flex flex-col gap-sm border border-black/5 bg-white/40 p-md glass-card rounded-3xl">
+        <label className="font-label-caps text-label-caps font-bold block mb-xs text-primary flex items-center gap-2"><span className="material-symbols-outlined">edit_document</span> Strategic Context</label>
+        <textarea 
+          className="w-full border border-black/10 p-md font-body-md bg-white/60 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400 transition-all h-32 md:h-40 resize-none text-primary"
+          value={decisionContext}
+          onChange={(e) => setDecisionContext(e.target.value)}
+          placeholder="Describe your current situation, the options you are considering, and your main criteria for success..."
+        />
+        <div className="flex justify-between items-center mt-2">
           {error ? <span className="text-error font-bold text-xs bg-error-container p-1">{error}</span> : <span></span>}
           <button 
             onClick={handleEvaluate} 
