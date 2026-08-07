@@ -84,8 +84,24 @@ router.get('/query', async (req, res) => {
     `;
 
     const model = ai.getGenerativeModel({ model: "gemini-flash-lite-latest" });
+    let aiResponse;
+    let retries = 3;
+    while (retries > 0) {
+      try {
+        aiResponse = await model.generateContent(prompt);
+        break;
+      } catch (err) {
+        if (err.status === 503 && retries > 1) {
+          console.warn(`Gemini 503 error in search route, retrying in 3 seconds... (${retries - 1} attempts left)`);
+          await new Promise(resolve => setTimeout(resolve, 3000));
+          retries--;
+        } else {
+          throw err;
+        }
+      }
+    }
+
     try {
-      const aiResponse = await model.generateContent(prompt);
       const text = aiResponse.response.text();
       
       const jsonMatch = text.match(/```json\n([\s\S]*)\n```/) || text.match(/\{[\s\S]*\}/);

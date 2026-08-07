@@ -41,7 +41,7 @@ const PulseDecide = () => {
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/decide/evaluate`, {
         context: decisionContext
       });
-      setDecideData(response.data.data);
+      setDecideData(response.data);
     } catch (err) {
       console.error(err);
       setError(err.response?.data?.error || 'Failed to evaluate decisions.');

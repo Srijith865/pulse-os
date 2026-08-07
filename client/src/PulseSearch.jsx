@@ -17,7 +17,7 @@ const PulseSearch = () => {
 
     try {
       const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/search/query?q=${encodeURIComponent(query)}`);
-      setGraphData(res.data.data);
+      setGraphData(res.data);
     } catch (err) {
       console.error(err);
       setError(err.response?.data?.error || 'Failed to search Knowledge Graph');
