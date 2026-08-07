@@ -2,6 +2,17 @@ import { useState } from 'react';
 import { supabase } from './supabaseClient';
 import { useNavigate } from 'react-router-dom';
 
+const getPasswordStrength = (pass) => {
+  let score = 0;
+  if (!pass) return 0;
+  if (pass.length >= 8) score += 1;
+  if (/[A-Z]/.test(pass)) score += 1;
+  if (/[a-z]/.test(pass)) score += 1;
+  if (/[0-9]/.test(pass)) score += 1;
+  if (/[^A-Za-z0-9]/.test(pass)) score += 1;
+  return score;
+};
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -9,6 +20,24 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+
+  const strength = getPasswordStrength(password);
+  const isStrong = strength >= 4;
+
+  const getStrengthLabel = () => {
+    if (strength === 0) return '';
+    if (strength <= 2) return 'Weak';
+    if (strength === 3) return 'Fair';
+    if (strength === 4) return 'Good';
+    return 'Strong';
+  };
+
+  const getStrengthColor = () => {
+    if (strength <= 2) return 'bg-red-500';
+    if (strength === 3) return 'bg-yellow-500';
+    if (strength >= 4) return 'bg-green-500';
+    return 'bg-black/10';
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -105,11 +134,32 @@ export default function Login() {
                   className="w-full bg-transparent border-none outline-none py-sm font-body-md text-primary placeholder-on-surface-variant"
                 />
               </div>
+
+              {isRegister && password.length > 0 && (
+                <div className="mt-1 flex flex-col gap-1">
+                  <div className="flex gap-1 h-1.5 w-full">
+                    {[1, 2, 3, 4, 5].map((level) => (
+                      <div 
+                        key={level} 
+                        className={`flex-1 rounded-full ${strength >= level ? getStrengthColor() : 'bg-black/10'} transition-colors duration-300`}
+                      />
+                    ))}
+                  </div>
+                  <div className="flex justify-between items-center text-xs mt-0.5">
+                    <span className={`font-label-caps font-bold ${strength >= 4 ? 'text-green-600' : 'text-secondary'}`}>
+                      {getStrengthLabel()}
+                    </span>
+                    {!isStrong && (
+                      <span className="text-secondary text-[10px]">Use 8+ chars, upper, lower, number, symbol</span>
+                    )}
+                  </div>
+                </div>
+              )}
             </div>
 
             <button
               type="submit"
-              disabled={loading || !email || !password}
+              disabled={loading || !email || !password || (isRegister && !isStrong)}
               className="press-feedback w-full bg-primary text-on-primary py-sm px-md font-label-caps text-label-caps uppercase rounded-xl cursor-pointer flex items-center justify-center gap-sm disabled:opacity-50 disabled:cursor-not-allowed mt-xs hover:opacity-90 transition-opacity glow-sm"
             >
               {loading ? (
