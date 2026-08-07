@@ -36,7 +36,7 @@ router.post('/evaluate', async (req, res) => {
         },
         "execution_plan": [
           { "app": "github", "description": "Edit code in GitHub repository", "payload": { "owner": "Srijith865", "repo": "nocturne1", "path": "pulse-action-log.md", "message": "Update via Action Engine", "content": "Applied new strategic decision." } },
-          { "app": "slack", "description": "Notify team about code edit", "payload": { "channel": "#new-channel", "text": "I have successfully edited the code in GitHub based on the strategic decision." } },
+          { "app": "slack", "description": "Notify team about code edit", "payload": { "channel": "C0BNGV6FUGL", "text": "I have successfully edited the code in GitHub based on the strategic decision." } },
           { "app": "calendar", "description": "Schedule a review meeting", "payload": { "summary": "Review updated code implementation", "duration_minutes": 60 } }
         ],
         "risk_radar": {
