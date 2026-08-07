@@ -19,6 +19,7 @@ export default function Login() {
   const [isRegister, setIsRegister] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const strength = getPasswordStrength(password);
@@ -126,13 +127,23 @@ export default function Login() {
                 <span className="material-symbols-outlined text-secondary mr-sm text-[20px]">key</span>
                 <input
                   id="password"
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   required
                   className="w-full bg-transparent border-none outline-none py-sm font-body-md text-primary placeholder-on-surface-variant"
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="text-secondary hover:text-primary transition-colors flex items-center justify-center p-1 cursor-pointer"
+                  tabIndex="-1"
+                >
+                  <span className="material-symbols-outlined text-[20px]">
+                    {showPassword ? 'visibility_off' : 'visibility'}
+                  </span>
+                </button>
               </div>
 
               {isRegister && password.length > 0 && (
