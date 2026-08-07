@@ -132,10 +132,10 @@ export default function Login() {
           <button
             type="button"
             onClick={() => { setIsRegister(!isRegister); setError(''); }}
-            className="font-label-caps text-label-caps text-primary hover:text-indigo-600 transition-colors uppercase cursor-pointer inline-flex items-center gap-1 border-b border-primary/30 pb-0.5"
+            className="press-feedback font-label-caps text-label-caps bg-indigo-100 text-indigo-700 hover:bg-indigo-200 transition-colors uppercase cursor-pointer inline-flex items-center gap-2 px-md py-sm rounded-xl font-bold shadow-sm"
           >
-            {isRegister ? 'Switch to Authentication' : 'Establish New Identity'}
-            <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
+            {isRegister ? 'Switch to Login' : 'Register Now'}
+            <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
           </button>
         </div>
 
